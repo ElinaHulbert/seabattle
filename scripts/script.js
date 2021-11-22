@@ -16,16 +16,9 @@ var game = new Phaser.Game(config);
 function preload() {
   this.load.image("waves", "./assets/pattern.jpg");
   this.load.image("ship1", "./assets/1_ship.png");
-  // this.load.spritesheet('dude',
-  //       'assets/dude.png',
-  //       { frameWidth: 32, frameHeight: 48 }
 }
 
-
-let ships_config = [
-  
-]
-
+let ships_config = [];
 
 function create() {
   //background
@@ -33,16 +26,16 @@ function create() {
   background.displayWidth = 800;
   background.displayHeight = 600;
   let cell_size = 32;
-  let cell_quantity = 10
+  let cell_quantity = 10;
   let x_0 = 250;
   let y_0 = 170;
 
   // grid
   var grid = this.add.grid(
-    x_0 + cell_size * cell_quantity / 2, //x
-    y_0 + cell_size * cell_quantity / 2, //y
-    cell_size*cell_quantity, //width
-    cell_size*cell_quantity, //height
+    x_0 + (cell_size * cell_quantity) / 2, //x
+    y_0 + (cell_size * cell_quantity) / 2, //y
+    cell_size * cell_quantity, //width
+    cell_size * cell_quantity, //height
     cell_size, //cellWidth
     cell_size, //cellHeight
     0xdffbff,
@@ -51,18 +44,28 @@ function create() {
     1
   );
 
-  // this.aGrid = new AlignGrid({scene:this,rows:11,cols:11});
-  // this.aGrid.showNumbers
-
-  // var x = Phaser.Math.Between(253, 547);
-  // var y = Phaser.Math.Between(188, 412);
-  let i = Phaser.Math.Between(0, 9);
-  let j = Phaser.Math.Between(0, 9);
-  var ship1 = this.add.image(x_0 + cell_size * (i + 0.5), y_0 + cell_size * (j + 0.5), "ship1");
-  let ship1_x_size = 22;
+  // let ship1_x_size = 22;
   let ship1_y_size = 42;
+  let total_number_ships1 = 4;
 
-  ship1.setScale(cell_size / ship1_x_size, cell_size / ship1_y_size);
+  //creating 4 ships using the variable "total_number_ships1"
+  for (let ship_number = 0; ship_number < total_number_ships1; ship_number++) {
+    //randomly generated position of a ship
+    let i = Phaser.Math.Between(0, 9);
+    let j = Phaser.Math.Between(0, 9);
+    //ship position is stored in array "ships_config"
+    ships_config.push([i, j]);
+
+    var ship1 = this.add.image(
+      //coordinates of ship's center
+      x_0 + cell_size * (i + 0.5),
+      y_0 + cell_size * (j + 0.5),
+      "ship1"
+    );
+
+    //ship image is scaled to fit into the cell
+    ship1.setScale((0.9 * cell_size) / ship1_y_size);
+  }
 }
 
 function update() {}
