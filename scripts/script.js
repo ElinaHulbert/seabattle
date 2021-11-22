@@ -51,8 +51,14 @@ function create() {
   //creating 4 ships using the variable "total_number_ships1"
   for (let ship_number = 0; ship_number < total_number_ships1; ship_number++) {
     //randomly generated position of a ship
-    let i = Phaser.Math.Between(0, 9);
-    let j = Phaser.Math.Between(0, 9);
+    let i = Phaser.Math.Between(0, cell_quantity - 1);
+    let j = Phaser.Math.Between(0, cell_quantity - 1);
+
+    //checks if i,j already used in ships_config -- if used generates new i,j (if it returns false it goes to the next steps)
+    while (ships_config.some((ship) => ship[0] == i && ship[1] == j)) {
+      i = Phaser.Math.Between(0, cell_quantity - 1);
+      j = Phaser.Math.Between(0, cell_quantity - 1);
+    }
     //ship position is stored in array "ships_config"
     ships_config.push([i, j]);
 
@@ -66,6 +72,8 @@ function create() {
     //ship image is scaled to fit into the cell
     ship1.setScale((0.9 * cell_size) / ship1_y_size);
   }
+  console.log(ships_config);
 }
+
 
 function update() {}
