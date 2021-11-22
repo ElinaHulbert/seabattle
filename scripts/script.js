@@ -15,26 +15,36 @@ var game = new Phaser.Game(config);
 
 function preload() {
   this.load.image("waves", "./assets/pattern.jpg");
-  this.load.image("ship3", "./assets/3_ship.png");
+  this.load.image("ship1", "./assets/1_ship.png");
   // this.load.spritesheet('dude',
   //       'assets/dude.png',
   //       { frameWidth: 32, frameHeight: 48 }
 }
+
+
+let ships_config = [
+  
+]
+
 
 function create() {
   //background
   let background = this.add.image(400, 300, "waves");
   background.displayWidth = 800;
   background.displayHeight = 600;
-  
+  let cell_size = 32;
+  let cell_quantity = 10
+  let x_0 = 200;
+  let y_0 = 200;
+
   // grid
   var grid = this.add.grid(
-    400, //x
-    300, //y
-    320, //width
-    320, //height
-    32, //cellWidth
-    32, //cellHeight
+    x_0 + cell_size * cell_quantity / 2, //x
+    y_0 + cell_size * cell_quantity / 2, //y
+    cell_size*cell_quantity, //width
+    cell_size*cell_quantity, //height
+    cell_size, //cellWidth
+    cell_size, //cellHeight
     0xdffbff,
     1,
     0x000000,
@@ -44,10 +54,15 @@ function create() {
   // this.aGrid = new AlignGrid({scene:this,rows:11,cols:11});
   // this.aGrid.showNumbers
 
-  var x = Phaser.Math.Between(253, 547);
-  var y = Phaser.Math.Between(188, 412);
-  var ship3 = this.add.image(x, y, "ship3");
-  ship3.setScale(0.8, 0.7);
+  // var x = Phaser.Math.Between(253, 547);
+  // var y = Phaser.Math.Between(188, 412);
+  let i = Phaser.Math.Between(0, 9);
+  let j = Phaser.Math.Between(0, 9);
+  var ship1 = this.add.image(x_0 + cell_size * (i + 0.5), y_0 + cell_size * (j + 0.5), "ship1");
+  let ship1_x_size = 22;
+  let ship1_y_size = 42;
+
+  ship1.setScale(cell_size / ship1_x_size, cell_size / ship1_y_size);
 }
 
 function update() {}
