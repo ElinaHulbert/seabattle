@@ -34,8 +34,8 @@ function create() {
   background.displayHeight = 600;
   let cell_size = 32;
   let cell_quantity = 10
-  let x_0 = 200;
-  let y_0 = 200;
+  let x_0 = 250;
+  let y_0 = 170;
 
   // grid
   var grid = this.add.grid(
