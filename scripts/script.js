@@ -14,7 +14,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
-  this.load.image("waves", "./assets/waves.jfif");
+  this.load.image("waves", "./assets/pattern.jpg");
   this.load.image("ship3", "./assets/3_ship.png");
   // this.load.spritesheet('dude',
   //       'assets/dude.png',
@@ -23,10 +23,10 @@ function preload() {
 
 function create() {
   //background
-  let background = this.add.image(800, 100, "waves");
-  background.displayWidth = 1600;
-  background.displayHeight = 1600;
-
+  let background = this.add.image(400, 300, "waves");
+  background.displayWidth = 800;
+  background.displayHeight = 600;
+  
   // grid
   var grid = this.add.grid(
     400, //x
