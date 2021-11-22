@@ -55,10 +55,10 @@ function create() {
   // this.aGrid = new AlignGrid({scene:this,rows:11,cols:11});
   // this.aGrid.showNumbers
 
-  var x = Phaser.Math.Between(253, 547);
-  var y = Phaser.Math.Between(188, 412);
-  let i = 7
-  let j = 0
+  // var x = Phaser.Math.Between(253, 547);
+  // var y = Phaser.Math.Between(188, 412);
+  let i = Phaser.Math.Between(0, 9);
+  let j = Phaser.Math.Between(0, 9);
   var ship1 = this.add.image(x_0 + cell_size * (i + 0.5), y_0 + cell_size * (j + 0.5), "ship1");
   let ship1_x_size = 22;
   let ship1_y_size = 42;
