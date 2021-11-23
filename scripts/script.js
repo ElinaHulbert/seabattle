@@ -16,6 +16,8 @@ var game = new Phaser.Game(config);
 function preload() {
   this.load.image("waves", "./assets/pattern.jpg");
   this.load.image("ship1", "./assets/1_ship.png");
+  this.load.image("ship2", "./assets/1_ship_2.png");
+  this.load.image("ship3", "./assets/1_ship_3.png");
   // this.load.spritesheet('dude',
   //       'assets/dude.png',
   //       { frameWidth: 32, frameHeight: 48 }
@@ -58,11 +60,52 @@ function create() {
   // var y = Phaser.Math.Between(188, 412);
   let i = Phaser.Math.Between(0, 9);
   let j = Phaser.Math.Between(0, 9);
+  let k = Phaser.Math.Between(0, 9);
+  let l = Phaser.Math.Between(0, 9);
+  let m = Phaser.Math.Between(0, 9);
+  let n = Phaser.Math.Between(0, 9);
+  function noOverlapping (){
+    if (i === j || i === k || i === l || i === m || i === n){
+      if (i === 0 || j === 0|| k === 0 || l === 0 || m === 0 || n === 0){
+        i++
+      };
+      if (i === 9 || j === 9|| k === 9 || l === 9 || m === 9 || n === 9){
+        i--
+      }else{
+        i++
+      }
+    };
+  }
+  
+  noOverlapping ();
   var ship1 = this.add.image(x_0 + cell_size * (i + 0.5), y_0 + cell_size * (j + 0.5), "ship1");
+  var ship2 = this.add.image(x_0 + cell_size * (k + 0.5), y_0 + cell_size * (l + 0.5), "ship2");
+  var ship3 = this.add.image(x_0 + cell_size * (m + 0.5), y_0 + cell_size * (n + 0.5), "ship3");
   let ship1_x_size = 22;
   let ship1_y_size = 42;
+  let ship2_x_size = 22;
+  let ship2_y_size = 42;
+  let ship3_x_size = 22;
+  let ship3_y_size = 42;
+
 
   ship1.setScale(cell_size / ship1_x_size, cell_size / ship1_y_size);
-}
+  ship2.setScale(cell_size / ship2_x_size, cell_size / ship2_y_size);
+  ship3.setScale(cell_size / ship3_x_size, cell_size / ship3_y_size);
+  ship1.alpha = 0.5;
+  ship2.alpha = 0.5;
+  ship3.alpha = 0.5;
 
+
+ship1.setInteractive().on('pointerdown', function(pointer){
+  ship1.alpha = 1;
+});
+ship2.setInteractive().on('pointerdown', function(pointer){
+  ship2.alpha = 1;
+});
+ship3.setInteractive().on('pointerdown', function(pointer){
+  ship3.alpha = 1;
+});
+
+}
 function update() {}
