@@ -68,12 +68,14 @@ function create() {
       y_0 + cell_size * (j + 0.5),
       "ship1"
     );
+    ship1.alpha = 0.5;
+
+    ship1.setInteractive().on("pointerdown", () => console.log("clicked"));
 
     //ship image is scaled to fit into the cell
     ship1.setScale((0.9 * cell_size) / ship1_y_size);
   }
   console.log(ships_config);
 }
-
 
 function update() {}
