@@ -8,6 +8,10 @@ var config = {
     create: create,
     update: update,
   },
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+  },
 };
 
 // An instance of a Phaser.Game object is assigned to a local variable called game and the configuration object is passed to it. This will start the process of bringing Phaser to life.
@@ -62,18 +66,22 @@ function create() {
     //ship position is stored in array "ships_config"
     ships_config.push([i, j]);
 
-    var ship1 = this.add.image(
-      //coordinates of ship's center
+    var ship1 = this.add.sprite(
       x_0 + cell_size * (i + 0.5),
       y_0 + cell_size * (j + 0.5),
       "ship1"
     );
-    ship1.alpha = 0.5;
-
-    ship1.setInteractive().on("pointerdown", () => console.log("clicked"));
-
     //ship image is scaled to fit into the cell
     ship1.setScale((0.9 * cell_size) / ship1_y_size);
+    ship1.setInteractive();
+
+    ship1.alpha = 0.000001;
+    this.input.enableDebug(ship1);
+
+    ship1.on("pointerdown", function () {
+      this.alpha = 1;
+      console.log("hii", i, j);
+    });
   }
   console.log(ships_config);
 }
