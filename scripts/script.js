@@ -6,7 +6,7 @@ var config = {
   scene: {
     preload: preload,
     create: create,
-    update: update,
+    // update: update,
   },
   scale: {
     mode: Phaser.Scale.FIT,
@@ -23,6 +23,8 @@ function preload() {
 }
 
 let ships_config = [];
+let score = 0;
+let scoreText;
 
 function create() {
   //background
@@ -33,6 +35,17 @@ function create() {
   let cell_quantity = 10;
   let x_0 = 250;
   let y_0 = 170;
+
+  //Score
+  scoreText = this.add.text(340, 70, "score: 0", {
+    fontSize: "32px",
+    fill: "#000",
+    backgroundColor: "#dffbff",
+    fontFamily: "Georgia",
+  });
+
+  //Score text padding
+  scoreText.setPadding({ x: 10, y: 5 });
 
   // grid
   var grid = this.add.grid(
@@ -48,7 +61,6 @@ function create() {
     1
   );
 
-  // let ship1_x_size = 22;
   let ship1_y_size = 42;
   let total_number_ships1 = 4;
 
@@ -63,6 +75,7 @@ function create() {
       i = Phaser.Math.Between(0, cell_quantity - 1);
       j = Phaser.Math.Between(0, cell_quantity - 1);
     }
+
     //ship position is stored in array "ships_config"
     ships_config.push([i, j]);
 
@@ -79,11 +92,18 @@ function create() {
     this.input.enableDebug(ship1);
 
     ship1.on("pointerdown", function () {
-      this.alpha = 1;
-      console.log("hii", i, j);
+      if (this.alpha != 1) {
+        score++;
+        this.alpha = 1;
+        scoreText.setText("Score: " + score);
+      }
+      console.log("score", score);
     });
   }
-  console.log(ships_config);
 }
 
-function update() {}
+// function update() {
+//   if (score <= ships_config.length && this.alpha!=1) {
+//     scoreText.setText("Score: " + score);
+//   }
+// }
