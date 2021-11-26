@@ -27,6 +27,7 @@ let ships_config = [];
 let splash_config = [];
 let score = 0;
 let scoreText;
+var shotCounter = 0;
 
 function create() {
   //background
@@ -63,6 +64,10 @@ function create() {
     1
   );
 
+  grid.setInteractive();
+
+ 
+
   // let ship1_x_size = 22;
   let ship1_y_size = 35;
   let splash_y_size = 78;
@@ -78,7 +83,7 @@ function create() {
       l = Phaser.Math.Between(0, cell_quantity - 1);
     }
    
-    console.log(ships_config, " ships_config")
+   
     splash_config.push([k, l]);
 
     var splash = this.add.sprite(
@@ -94,6 +99,13 @@ function create() {
     splash.on("pointerdown", function () {
       this.alpha = 1;
     });
+
+    var userShot = splash.on("pointerdown", function () {
+      shotCounter++;
+      console.log(shotCounter);
+    });
+
+    
   }
 
   //creating 4 ships using the variable "total_number_ships1"
