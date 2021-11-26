@@ -31,10 +31,10 @@ function create() {
   let background = this.add.image(400, 300, "waves");
   background.displayWidth = 800;
   background.displayHeight = 600;
-  let cell_size = 32;
+  let cell_size = 40;
   let cell_quantity = 10;
-  let x_0 = 250;
-  let y_0 = 170;
+  let x_0 = 210;
+  let y_0 = 120;
 
   // grid
   var grid = this.add.grid(
