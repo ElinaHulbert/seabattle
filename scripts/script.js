@@ -95,9 +95,8 @@ function create() {
       if (this.alpha != 1) {
         score++;
         this.alpha = 1;
-        scoreText.setText("Score: " + score);
+        scoreText.setText("score: " + score);
       }
-      console.log("score", score);
     });
   }
 }
