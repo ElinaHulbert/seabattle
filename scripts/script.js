@@ -20,6 +20,7 @@ var game = new Phaser.Game(config);
 function preload() {
   this.load.image("waves", "./assets/pattern.jpg");
   this.load.image("ship1", "./assets/1_ship.png");
+  this.load.image("ship2", "./assets/2_ship.png");
   this.load.image("splash", "./assets/water_splash.png");
 }
 
@@ -52,8 +53,10 @@ function create() {
 
   // let ship1_x_size = 22;
   let ship1_y_size = 35;
+  let ship2_y_size = 35;
   let splash_y_size = 78;
   let total_number_ships1 = 4;
+  let total_number_ships2 = 3;
   let total_number_splash = cell_quantity * cell_quantity; 
 
 
@@ -114,6 +117,40 @@ function create() {
       console.log("hii", i, j);
     });
   }
+
+
+  //creating 4 ships using the variable "total_number_ships1"
+  for (let ship_number = 0; ship_number < total_number_ships2; ship_number++) {
+    //randomly generated position of a ship
+    let m = Phaser.Math.Between(0, cell_quantity - 1);
+    let n = Phaser.Math.Between(0, cell_quantity - 1);
+
+    //checks if i,j already used in ships_config -- if used generates new i,j (if it returns false it goes to the next steps)
+    while (ships_config.some((ship) => ship[0] == m && ship[1] == n)) {
+      m = Phaser.Math.Between(0, cell_quantity - 1);
+      n = Phaser.Math.Between(0, cell_quantity - 1);
+    }
+    //ship position is stored in array "ships_config"
+    ships_config.push([m, n]);
+
+    var ship2 = this.add.sprite(
+      x_0 + cell_size * (m + 0.5),
+      y_0 + cell_size * n,
+      "ship2"
+    );
+    //ship image is scaled to fit into the cell
+    ship2.setScale((0.9 * cell_size) / ship2_y_size);
+    ship2.setInteractive();
+
+    ship2.alpha = 0.000001;
+    this.input.enableDebug(ship2);
+
+    ship2.on("pointerdown", function () {
+      this.alpha = 1;
+      console.log("hii", i, j);
+    });
+  }
+  
   console.log(ships_config);
 
 
