@@ -20,9 +20,11 @@ var game = new Phaser.Game(config);
 function preload() {
   this.load.image("waves", "./assets/pattern.jpg");
   this.load.image("ship1", "./assets/1_ship.png");
+  this.load.image("splash", "./assets/water_splash.png");
 }
 
 let ships_config = [];
+let splash_config = [];
 
 function create() {
   //background
@@ -49,8 +51,37 @@ function create() {
   );
 
   // let ship1_x_size = 22;
-  let ship1_y_size = 42;
+  let ship1_y_size = 35;
+  let splash_y_size = 78;
   let total_number_ships1 = 4;
+  let total_number_splash = cell_quantity * cell_quantity; 
+
+
+  for(let splash_number = 0; splash_number < total_number_splash; splash_number++) {
+    let k = Phaser.Math.Between(0, cell_quantity - 1);
+    let l = Phaser.Math.Between(0, cell_quantity - 1);
+    while (splash_config.some((splash) => splash[0] == k && splash[1] == l)) {
+      k = Phaser.Math.Between(0, cell_quantity - 1);
+      l = Phaser.Math.Between(0, cell_quantity - 1);
+    }
+   
+    console.log(ships_config, " ships_config")
+    splash_config.push([k, l]);
+
+    var splash = this.add.sprite(
+      x_0 + cell_size * (k + 0.5),
+      y_0 + cell_size * (l + 0.5),
+      "splash"
+    );
+
+    splash.setScale((0.9 * cell_size) / splash_y_size);
+    splash.setInteractive();
+    splash.alpha = 0.000001;
+
+    splash.on("pointerdown", function () {
+      this.alpha = 1;
+    });
+  }
 
   //creating 4 ships using the variable "total_number_ships1"
   for (let ship_number = 0; ship_number < total_number_ships1; ship_number++) {
@@ -84,6 +115,11 @@ function create() {
     });
   }
   console.log(ships_config);
+
+
+  
+  // console.log(ships_config[0][0], " i")
 }
+
 
 function update() {}
