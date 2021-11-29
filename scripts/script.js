@@ -81,7 +81,7 @@ function create() {
       l = Phaser.Math.Between(0, cell_quantity - 1);
     }
    
-    console.log(ships_config, " ships_config")
+    // console.log(ships_config, " ships_config")
     splash_config.push([k, l]);
 
     var splash = this.add.sprite(
@@ -116,6 +116,7 @@ function create() {
 
     //ship position is stored in array "ships_config"
     ships_config.push([i, j]);
+    ships_config.push([i, j+1]);
 
     var ship1 = this.add.sprite(
       x_0 + cell_size * (i + 0.5),
@@ -144,15 +145,12 @@ function create() {
 
   for (let ship_number = 0; ship_number < 3; ship_number++) {
     let i = Phaser.Math.Between(0, cell_quantity - 1);
-    let j = Phaser.Math.Between(1, cell_quantity - 2);
+    let j = Phaser.Math.Between(0, cell_quantity - 2);
 
     while (ships_config.some((ship) => ship[0] == i && ship[1] == j)) {
       i = Phaser.Math.Between(0, cell_quantity - 1);
-      j = Phaser.Math.Between(1, cell_quantity - 2);
+      j = Phaser.Math.Between(0, cell_quantity - 2);
     }
-
-   
-    
     
    //ship position is stored in array "ships_config"
     ships_config.push([i, j]);
@@ -160,7 +158,7 @@ function create() {
    
     var ship2 = this.add.sprite(
       x_0 + cell_size * (i + 0.5),
-      y_0 + cell_size * ((j-2) + 3),
+      y_0 + cell_size * (j + 1),
       "ship2"
     );
 
@@ -169,12 +167,18 @@ function create() {
 
     this.input.enableDebug(ship2);
 
+    let scene = this;
+
     ship2.on("pointerdown", function () {
       if (this.alpha != 1) {
         score++;
         // this.alpha = 1;
-        this.add.sprite(x_0 + cell_size * (i + 0.5),
-        y_0 + cell_size * ((j-2) + 3), "flower")
+
+        let i = Math.floor((scene.input.activePointer.x - x_0)/cell_size);
+        let j = Math.floor((scene.input.activePointer.y - y_0) / cell_size);
+
+        scene.add.sprite(x_0 + cell_size * (i + 0.5),
+        y_0 + cell_size * ((j + 0.5)), "flower")
         scoreText.setText("score: " + score);
       }
     });
