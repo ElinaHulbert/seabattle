@@ -12,6 +12,9 @@ var config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
+  audio: {
+    disableWebAudio: true
+}
 };
 
 // An instance of a Phaser.Game object is assigned to a local variable called game and the configuration object is passed to it. This will start the process of bringing Phaser to life.
@@ -19,11 +22,13 @@ var game = new Phaser.Game(config);
 
 function preload() {
   this.load.image("waves", "./assets/pattern.jpg");
+  this.load.image("speaker", "./assets/speaker.png");
   this.load.image("ship1", "./assets/1_ship.png");
   this.load.image("ship2", "./assets/2_ship.png");
   this.load.image("splash", "./assets/water_splash.png");
   this.load.image("flower", "./assets/flower.png");
   this.load.image("ship_with_flower", "./assets/2ship_with_flower.png");
+  this.load.audio("sea", ["./assets/sea.mp3"]);
 }
 
 let ships_config = [];
@@ -32,8 +37,13 @@ let score = 0;
 let scoreText;
 var shotCounter = 0;
 //var gameOver = 0;
+var sea;
+
 
 function create() {
+ 
+	
+  
   //background
   let background = this.add.image(400, 300, "waves");
   background.displayWidth = 800;
@@ -110,14 +120,19 @@ function create() {
 
     let loserText;
     let scene = this;
-
+    
     splash.on("pointerdown", function () {
       if (this.alpha != 1) {
         shotCounter++;
         this.alpha = 1;
         console.log(shotCounter);
+        // sea = scene.sound.add('sea');
+
+        // sea.play({
+        //     seek: 2.550
+        // });
       }
-      if (shotCounter == 2) {
+      if (shotCounter == 20) {
         console.log("You lost!");
         let newBackground = scene.add.image(400, 300, "waves");
         newBackground.displayWidth = 800;
@@ -254,4 +269,32 @@ function create() {
       }
     });
   }
+  let speaker = this.add.image(50, 50, "speaker");
+  speaker.setScale(0.06, 0.06)
+  speaker.setInteractive();
+  let scene = this;
+
+
+
+    speaker.on("pointerdown", function () {
+    
+      sea = scene.sound.add('sea');
+
+      sea.play({
+          seek: 2.550
+      });
+      if(sea.play){
+        speaker.on("pointerdown", function () {
+          sea.pause()
+        });
+      } else {
+        sea.resume()
+      }
+      
+    });
+
+    //https://phaser.io/examples/v3/view/audio/html5-audio/markers-pause-resume
+
 }
+
+function update(){}
