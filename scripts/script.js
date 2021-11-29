@@ -20,6 +20,7 @@ var game = new Phaser.Game(config);
 function preload() {
   this.load.image("waves", "./assets/pattern.jpg");
   this.load.image("ship1", "./assets/1_ship.png");
+  this.load.image("ship2", "./assets/2_ship.png");
   this.load.image("splash", "./assets/water_splash.png");
 }
 
@@ -95,6 +96,9 @@ function create() {
       this.alpha = 1;
     });
   }
+  
+  let i;
+  let j;
 
   //creating 4 ships using the variable "total_number_ships1"
   for (let ship_number = 0; ship_number < total_number_ships1; ship_number++) {
@@ -116,12 +120,15 @@ function create() {
       y_0 + cell_size * (j + 0.5),
       "ship1"
     );
+
+   
     //ship image is scaled to fit into the cell
     ship1.setScale((0.9 * cell_size) / ship1_y_size);
     ship1.setInteractive();
 
     ship1.alpha = 0.000001;
     this.input.enableDebug(ship1);
+   
 
     ship1.on("pointerdown", function () {
       if (this.alpha != 1) {
@@ -131,6 +138,44 @@ function create() {
       }
     });
   }
+  
+
+  for (let ship_number = 0; ship_number < 3; ship_number++) {
+    let i = Phaser.Math.Between(0, cell_quantity - 1);
+    let j = Phaser.Math.Between(1, cell_quantity - 2);
+
+    while (ships_config.some((ship) => ship[0] == i && ship[1] == j)) {
+      i = Phaser.Math.Between(0, cell_quantity - 1);
+      j = Phaser.Math.Between(1, cell_quantity - 2);
+    }
+
+   
+    
+    
+   //ship position is stored in array "ships_config"
+    ships_config.push([i, j]);
+    
+   
+    var ship2 = this.add.sprite(
+      x_0 + cell_size * (i + 0.5),
+      y_0 + cell_size * ((j-2) + 3),
+      "ship2"
+    );
+
+    ship2.alpha = 0.000001;
+    ship2.setInteractive();
+
+    this.input.enableDebug(ship2);
+
+    ship2.on("pointerdown", function () {
+      if (this.alpha != 1) {
+        score++;
+        this.alpha = 1;
+        scoreText.setText("score: " + score);
+      }
+    });
+  }
+
 }
 
 // function update() {
