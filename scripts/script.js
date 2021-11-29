@@ -23,6 +23,7 @@ function preload() {
   this.load.image("ship2", "./assets/2_ship.png");
   this.load.image("splash", "./assets/water_splash.png");
   this.load.image("flower", "./assets/flower.png");
+  this.load.image("ship_with_flower", "./assets/2ship_with_flower.png");
 }
 
 let ships_config = [];
@@ -169,14 +170,17 @@ function create() {
     ship2.setInteractive();
 
     this.input.enableDebug(ship2);
-
+    
     let scene = this;
+
+    ship2.state = 2;
 
     ship2.on("pointerdown", function () {
       if (this.alpha != 1) {
         score++;
         // this.alpha = 1;
-
+        this.state--;
+       
         let i = Math.floor((scene.input.activePointer.x - x_0) / cell_size);
         let j = Math.floor((scene.input.activePointer.y - y_0) / cell_size);
 
@@ -185,6 +189,17 @@ function create() {
           y_0 + cell_size * (j + 0.5),
           "flower"
         );
+
+        if (this.state == 0) {
+          // var ship_with_flower = scene.add.sprite(
+          //   x_0 + cell_size * (i + 0.5),
+          //   y_0 + cell_size * (j - 2),
+          //   "ship_with_flower"
+          // );
+      
+        this.alpha = 1;
+
+        }
 
         scoreText.setText("score: " + score);
       }
@@ -213,4 +228,4 @@ function create() {
 //user precess on one cell
 //if the cell is taken by a two-cell ship,
 //change the opacity of the flower from 0 to 1
-//add an animation that the two-cell ship will apear one second after the user found out both cells of the two-cell ship
+//add an animation that the two-cell ship will appear one second after the user found out both cells of the two-cell ship
