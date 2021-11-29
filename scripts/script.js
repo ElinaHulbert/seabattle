@@ -18,10 +18,12 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
+  
   this.load.image("waves", "./assets/pattern.jpg");
   this.load.image("ship1", "./assets/1_ship.png");
   this.load.image("ship2", "./assets/2_ship.png");
   this.load.image("splash", "./assets/water_splash.png");
+  this.load.image("flower", "./assets/flower.png");
 }
 
 let ships_config = [];
@@ -170,7 +172,9 @@ function create() {
     ship2.on("pointerdown", function () {
       if (this.alpha != 1) {
         score++;
-        this.alpha = 1;
+        // this.alpha = 1;
+        this.add.sprite(x_0 + cell_size * (i + 0.5),
+        y_0 + cell_size * ((j-2) + 3), "flower")
         scoreText.setText("score: " + score);
       }
     });
@@ -183,3 +187,21 @@ function create() {
 //     scoreText.setText("Score: " + score);
 //   }
 // }
+
+
+//VERSION 1
+//user precess on one cell
+//if the cell is taken by a two-cell ship,
+//then add a flower to this place where the user pressed
+//if the cell is not taken by a two-cell ship,
+//the show the splash
+//if the user finds the second part of the two-cell ship
+//show the ship fully
+
+//VERSION 2
+//add two flowers instead of the each two-cell ships (one flower per each ship)
+//repeat 2 times:
+   //user precess on one cell
+   //if the cell is taken by a two-cell ship,
+   //change the opacity of the flower from 0 to 1
+//add an animation that the two-cell ship will apear one second after the user found out both cells of the two-cell ship
