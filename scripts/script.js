@@ -122,20 +122,20 @@ function create() {
   //creating 4 ships using the variable "total_number_ships1"
   for (let ship_number = 0; ship_number < total_number_ships2; ship_number++) {
     //randomly generated position of a ship
-    let m = Phaser.Math.Between(0, cell_quantity - 1);
-    let n = Phaser.Math.Between(0, cell_quantity - 1);
+    let m = Phaser.Math.Between(1, cell_quantity - 2);
+    let n = Phaser.Math.Between(1, cell_quantity - 2);
 
     //checks if i,j already used in ships_config -- if used generates new i,j (if it returns false it goes to the next steps)
     while (ships_config.some((ship) => ship[0] == m && ship[1] == n)) {
-      m = Phaser.Math.Between(0, cell_quantity - 1);
-      n = Phaser.Math.Between(0, cell_quantity - 1);
+      m = Phaser.Math.Between(1, cell_quantity - 2);
+      n = Phaser.Math.Between(1, cell_quantity - 2);
     }
     //ship position is stored in array "ships_config"
     ships_config.push([m, n]);
 
     var ship2 = this.add.sprite(
       x_0 + cell_size * (m + 0.5),
-      y_0 + cell_size * n,
+      y_0 + cell_size * (n + 0),
       "ship2"
     );
     //ship image is scaled to fit into the cell
