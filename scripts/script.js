@@ -28,6 +28,7 @@ let splash_config = [];
 let score = 0;
 let scoreText;
 var shotCounter = 0;
+//var gameOver = 0;
 
 function create() {
   //background
@@ -64,26 +65,33 @@ function create() {
     1
   );
 
-  grid.setInteractive();
-
- 
-
   // let ship1_x_size = 22;
   let ship1_y_size = 35;
   let splash_y_size = 78;
   let total_number_ships1 = 4;
-  let total_number_splash = cell_quantity * cell_quantity; 
+  let total_number_splash = cell_quantity * cell_quantity;
 
+  var count = 0;
 
-  for(let splash_number = 0; splash_number < total_number_splash; splash_number++) {
+  function createScene(SceneClass) {
+    var sceneKey = "window" + count++;
+    var scene = new SceneClass(sceneKey);
+
+    this.scene.add(sceneKey, scene, true);
+  }
+
+  for (
+    let splash_number = 0;
+    splash_number < total_number_splash;
+    splash_number++
+  ) {
     let k = Phaser.Math.Between(0, cell_quantity - 1);
     let l = Phaser.Math.Between(0, cell_quantity - 1);
     while (splash_config.some((splash) => splash[0] == k && splash[1] == l)) {
       k = Phaser.Math.Between(0, cell_quantity - 1);
       l = Phaser.Math.Between(0, cell_quantity - 1);
     }
-   
-   
+
     splash_config.push([k, l]);
 
     var splash = this.add.sprite(
@@ -96,16 +104,31 @@ function create() {
     splash.setInteractive();
     splash.alpha = 0.000001;
 
+    let winnerText;
+    let scene = this;
+
     splash.on("pointerdown", function () {
-      this.alpha = 1;
+      if (this.alpha != 1) {
+        shotCounter++;
+        this.alpha = 1;
+        console.log(shotCounter);
+      }
+      if (shotCounter == 2) {
+        console.log("You lost!");
+        let newBackground = scene.add.image(400, 300, "waves");
+        newBackground.displayWidth = 800;
+        newBackground.displayHeight = 600;
+        // winnerText.setText();
+        winnerText = scene.add.text(340, 70, {
+          fontSize: "32px",
+          fill: "#000",
+          backgroundColor: "#dffbff",
+          fontFamily: "Georgia",
+        });
+        winnerText.setPadding({ x: 10, y: 5 });
+        winnerText.setText("YOU LOST! ALL SHIPS ARE STILL FLOATING!");
+      }
     });
-
-    var userShot = splash.on("pointerdown", function () {
-      shotCounter++;
-      console.log(shotCounter);
-    });
-
-    
   }
 
   //creating 4 ships using the variable "total_number_ships1"
@@ -135,18 +158,19 @@ function create() {
     ship1.alpha = 0.000001;
     this.input.enableDebug(ship1);
 
+    let scene = this;
     ship1.on("pointerdown", function () {
       if (this.alpha != 1) {
         score++;
         this.alpha = 1;
         scoreText.setText("score: " + score);
+        if (score == 4) {
+          console.log("You won!");
+          let newBackground = scene.add.image(400, 300, "waves");
+          newBackground.displayWidth = 800;
+          newBackground.displayHeight = 600;
+        }
       }
     });
   }
 }
-
-// function update() {
-//   if (score <= ships_config.length && this.alpha!=1) {
-//     scoreText.setText("Score: " + score);
-//   }
-// }
