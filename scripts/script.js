@@ -70,7 +70,7 @@ function create() {
 
   // let ship1_x_size = 22;
   let ship1_y_size = 35;
-  let splash_y_size = 78;
+  let splash_y_size = 60;
   let total_number_ships1 = 4;
   let total_number_splash = cell_quantity * cell_quantity;
 
@@ -105,7 +105,13 @@ function create() {
     );
 
     splash.setScale((0.9 * cell_size) / splash_y_size);
+    // splash.setSize((0.9 * cell_size) / splash_y_size, (0.9 * cell_size) / splash_y_size);
+    // splash.GetCenter(rect);
+    // splash.setSize(53.6, 53.6, 0, 0)
     splash.setInteractive();
+    splash.input.hitArea.setTo(-2, -2, 55, 55);
+    
+  //  this.input.enableDebug(splash);
     splash.alpha = 0.000001;
 
     let winnerText;
@@ -117,7 +123,7 @@ function create() {
         this.alpha = 1;
         console.log(shotCounter);
       }
-      if (shotCounter == 2) {
+      if (shotCounter == 20) {
         console.log("You lost!");
         let newBackground = scene.add.image(400, 300, "waves");
         newBackground.displayWidth = 800;
@@ -164,7 +170,10 @@ function create() {
     ship1.setInteractive();
 
     ship1.alpha = 0.000001;
+    ship1.input.hitArea.setTo(-7, 3, 36, 36);
+
     this.input.enableDebug(ship1);
+
 
     let scene = this;
     ship1.on("pointerdown", function () {
@@ -172,7 +181,7 @@ function create() {
         score++;
         this.alpha = 1;
         scoreText.setText("score: " + score);
-        if (score == 4) {
+        if (score == 10) {
           console.log("You won!");
           let newBackground = scene.add.image(400, 300, "waves");
           newBackground.displayWidth = 800;
@@ -208,6 +217,8 @@ function create() {
 
     ship2.alpha = 0.000001;
     ship2.setInteractive();
+    ship2.input.hitArea.setTo(-6, 0, 39, 80);
+        
 
     this.input.enableDebug(ship2);
     
