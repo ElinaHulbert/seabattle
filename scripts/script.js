@@ -1,3 +1,5 @@
+import { addOneCellShip } from './1_cell_ship.js';
+import { addTwoCellShip } from './2_cell_ship.js';
 var config = {
   type: Phaser.AUTO,
   width: 800,
@@ -28,7 +30,7 @@ let ships_config = [];
 let splash_config = [];
 let score = 0;
 let scoreText;
-var shotCounter = 0;
+let shotCounter = 0;
 let attemptText;
 
 function create() {
@@ -143,144 +145,16 @@ function create() {
 //////////////////////////////1 CELL SHIP/////////////////////////////////////////
   let i;
   let j;
+  let scene = this;
 
-  //creating 4 ships using the variable "total_number_ships1"
-  for (let ship_number = 0; ship_number < total_number_ships1; ship_number++) {
-    //randomly generated position of a ship
-    let i = Phaser.Math.Between(0, cell_quantity - 1);
-    let j = Phaser.Math.Between(0, cell_quantity - 1);
 
-    //checks if i,j already used in ships_config -- if used generates new i,j (if it returns false it goes to the next steps)
-    while (ships_config.some((ship) => ship[0] == i && ship[1] == j)) {
-      i = Phaser.Math.Between(0, cell_quantity - 1);
-      j = Phaser.Math.Between(0, cell_quantity - 1);
-    }
 
-    //ship position is stored in array "ships_config"
-    ships_config.push([i, j]);
+ addOneCellShip(scene, ships_config, cell_size, ship1_y_size, total_number_ships1, cell_quantity, x_0 , y_0,  score, scoreText);
 
-    var ship1 = this.add.sprite(
-      x_0 + cell_size * (i + 0.5),
-      y_0 + cell_size * (j + 0.5),
-      "ship1"
-    );
-
-    //ship image is scaled to fit into the cell
-    ship1.setScale((0.9 * cell_size) / ship1_y_size);
-    ship1.setInteractive();
-
-    ship1.alpha = 0.000001;
-    ship1.input.hitArea.setTo(-7, 3, 36, 36);
-
-    this.input.enableDebug(ship1);
-
-    let winnerText;
-    let scene = this;
-    let delay;
-    ship1.on("pointerdown", function () {
-      if (this.alpha != 1) {
-        score++;
-        this.alpha = 1;
-        scoreText.setText("score: " + score + " /10");
-        if (score == 10) {
- 
-      setTimeout(() => {onEvent()}, 1000);
-        function onEvent(){
-          console.log("You won!");
-          
-          let newBackground = scene.add.image(400, 300, "waves");
-          newBackground.displayWidth = 800;
-          newBackground.displayHeight = 600;
-          winnerText = scene.add.text(340, 70, {
-            fontSize: "32px",
-            fill: "#000",
-            backgroundColor: "#dffbff",
-            fontFamily: 'carino_sanssemibold',
-          });
-          winnerText.setPadding({ x: 10, y: 5 });
-          winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
-        }}
-      }
-    });
-  }
 //////////////////////////////2 CELL SHIP/////////////////////////////////////////
+ addTwoCellShip(scene, ships_config, cell_quantity, score, scoreText, x_0, y_0, cell_size);
 
-  for (let ship_number = 0; ship_number < 3; ship_number++) {
-    let i = Phaser.Math.Between(0, cell_quantity - 1);
-    let j = Phaser.Math.Between(0, cell_quantity - 2);
-
-    while (
-      ships_config.some(
-        (ship) =>
-          (ship[0] == i && ship[1] == j) || (ship[0] == i && ship[1] == j + 1)
-      )
-    ) {
-      i = Phaser.Math.Between(0, cell_quantity - 1);
-      j = Phaser.Math.Between(0, cell_quantity - 2);
-    }
-
-    ships_config.push([i, j]);
-    ships_config.push([i, j + 1]);
-
-    var ship2 = this.add.sprite(
-      x_0 + cell_size * (i + 0.5),
-      y_0 + cell_size * (j + 1),
-      "ship2"
-    );
-
-    ship2.alpha = 0.000001;
-    ship2.setInteractive();
-    ship2.input.hitArea.setTo(-6, 0, 39, 80);
-        
-
-    this.input.enableDebug(ship2);
-
-    let scene = this;
-    let winnerText;
-    ship2.state = 2;
-
-    ship2.on("pointerdown", function () {
-      if (this.alpha != 1) {
-        score++;
-        this.state--;
-
-        let i = Math.floor((scene.input.activePointer.x - x_0) / cell_size);
-        let j = Math.floor((scene.input.activePointer.y - y_0) / cell_size);
-        
-          
-        ///////////////////////////FLOWER//////////////////////////////////////////////////////////
-         
-       let flower =  scene.add.sprite(
-          x_0 + cell_size * (i + 0.5),
-          y_0 + cell_size * (j + 0.5),
-          "flower"
-        );
-
-        flower.setInteractive();
-        
-        if (this.state == 0) {
-          this.alpha = 1;
-        }
-//SCORE TEXT APPENDED TO THE PAGE
-        scoreText.setText("score: " + score + " /10");
-       // TIMER
-        if (score == 10) {
-          setTimeout(() => {onEvent()}, 1000);
-        function onEvent(){
-          console.log("You won!");
-          let newBackground = scene.add.image(400, 300, "waves");
-          newBackground.displayWidth = 800;
-          newBackground.displayHeight = 600;
-          winnerText = scene.add.text(340, 70, {
-            fontSize: "32px",
-            fill: "#000",
-            backgroundColor: "#dffbff",
-            fontFamily: 'carino_sanssemibold',
-          });
-          winnerText.setPadding({ x: 10, y: 5 });
-          winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
-        }
-      }}
-    });
-  }
+  
+ console.log(document)
 }
+
