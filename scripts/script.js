@@ -76,12 +76,12 @@ function create() {
 
   var count = 0;
 
-  function createScene(SceneClass) {
-    var sceneKey = "window" + count++;
-    var scene = new SceneClass(sceneKey);
+  // function createScene(SceneClass) {
+  //   var sceneKey = "window" + count++;
+  //   var scene = new SceneClass(sceneKey);
 
-    this.scene.add(sceneKey, scene, true);
-  }
+  //   this.scene.add(sceneKey, scene, true);
+  // }
 
   for (
     let splash_number = 0;
@@ -114,7 +114,7 @@ function create() {
   //  this.input.enableDebug(splash);
     splash.alpha = 0.000001;
 
-    let winnerText;
+    let loserText;
     let scene = this;
 
     splash.on("pointerdown", function () {
@@ -129,14 +129,14 @@ function create() {
         newBackground.displayWidth = 800;
         newBackground.displayHeight = 600;
         // winnerText.setText();
-        winnerText = scene.add.text(340, 70, {
+        loserText = scene.add.text(340, 70, {
           fontSize: "32px",
           fill: "#000",
           backgroundColor: "#dffbff",
           fontFamily: "Georgia",
         });
-        winnerText.setPadding({ x: 10, y: 5 });
-        winnerText.setText("YOU LOST! ALL SHIPS ARE STILL FLOATING!");
+        loserText.setPadding({ x: 10, y: 5 });
+        loserText.setText("YOU LOST! ALL SHIPS ARE STILL FLOATING!");
       }
     });
   }
@@ -174,7 +174,7 @@ function create() {
 
     this.input.enableDebug(ship1);
 
-
+    let winnerText;
     let scene = this;
     ship1.on("pointerdown", function () {
       if (this.alpha != 1) {
@@ -186,6 +186,15 @@ function create() {
           let newBackground = scene.add.image(400, 300, "waves");
           newBackground.displayWidth = 800;
           newBackground.displayHeight = 600;
+          // winnerText.setText();
+          winnerText = scene.add.text(340, 70, {
+            fontSize: "32px",
+            fill: "#000",
+            backgroundColor: "#dffbff",
+            fontFamily: "Georgia",
+          });
+          winnerText.setPadding({ x: 10, y: 5 });
+          winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
         }
       }
     });
@@ -221,9 +230,9 @@ function create() {
         
 
     this.input.enableDebug(ship2);
-    
-    let scene = this;
 
+    let scene = this;
+    let winnerText;
     ship2.state = 2;
 
     ship2.on("pointerdown", function () {
@@ -231,7 +240,7 @@ function create() {
         score++;
         // this.alpha = 1;
         this.state--;
-       
+
         let i = Math.floor((scene.input.activePointer.x - x_0) / cell_size);
         let j = Math.floor((scene.input.activePointer.y - y_0) / cell_size);
 
@@ -247,12 +256,27 @@ function create() {
           //   y_0 + cell_size * (j - 2),
           //   "ship_with_flower"
           // );
-      
-        this.alpha = 1;
 
+          this.alpha = 1;
         }
 
         scoreText.setText("score: " + score);
+
+        if (score == 10) {
+          console.log("You won!");
+          let newBackground = scene.add.image(400, 300, "waves");
+          newBackground.displayWidth = 800;
+          newBackground.displayHeight = 600;
+          // winnerText.setText();
+          winnerText = scene.add.text(340, 70, {
+            fontSize: "32px",
+            fill: "#000",
+            backgroundColor: "#dffbff",
+            fontFamily: "Georgia",
+          });
+          winnerText.setPadding({ x: 10, y: 5 });
+          winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
+        }
       }
     });
   }
