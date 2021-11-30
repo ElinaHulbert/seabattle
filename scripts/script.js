@@ -71,7 +71,8 @@ function create() {
   let total_number_splash = cell_quantity * cell_quantity;
 
   var count = 0;
-
+//////////////////////////SPLASHES////////////////////////////////////
+  
   for (
     let splash_number = 0;
     splash_number < total_number_splash;
@@ -105,7 +106,9 @@ function create() {
         this.alpha = 1;
         console.log(shotCounter);
       }
-      if (shotCounter == 20) {
+      if (shotCounter == 2) {
+        setTimeout(() => {onEvent()}, 500);
+        function onEvent(){
         console.log("You lost!");
         let newBackground = scene.add.image(400, 300, "waves");
         newBackground.displayWidth = 800;
@@ -118,10 +121,10 @@ function create() {
         });
         loserText.setPadding({ x: 10, y: 5 });
         loserText.setText("YOU LOST! ALL SHIPS ARE STILL FLOATING!");
-      }
+      }}
     });
   }
-
+//////////////////////////////1 CELL SHIP/////////////////////////////////////////
   let i;
   let j;
 
@@ -157,13 +160,18 @@ function create() {
 
     let winnerText;
     let scene = this;
+    let delay;
     ship1.on("pointerdown", function () {
       if (this.alpha != 1) {
         score++;
         this.alpha = 1;
         scoreText.setText("score: " + score);
         if (score == 10) {
+ 
+      setTimeout(() => {onEvent()}, 1000);
+        function onEvent(){
           console.log("You won!");
+          
           let newBackground = scene.add.image(400, 300, "waves");
           newBackground.displayWidth = 800;
           newBackground.displayHeight = 600;
@@ -175,10 +183,11 @@ function create() {
           });
           winnerText.setPadding({ x: 10, y: 5 });
           winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
-        }
+        }}
       }
     });
   }
+//////////////////////////////2 CELL SHIP/////////////////////////////////////////
 
   for (let ship_number = 0; ship_number < 3; ship_number++) {
     let i = Phaser.Math.Between(0, cell_quantity - 1);
@@ -238,8 +247,10 @@ function create() {
         }
 
         scoreText.setText("score: " + score);
-
+       // TIMER
         if (score == 10) {
+          setTimeout(() => {onEvent()}, 1000);
+        function onEvent(){
           console.log("You won!");
           let newBackground = scene.add.image(400, 300, "waves");
           newBackground.displayWidth = 800;
@@ -253,7 +264,7 @@ function create() {
           winnerText.setPadding({ x: 10, y: 5 });
           winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
         }
-      }
+      }}
     });
   }
 }
