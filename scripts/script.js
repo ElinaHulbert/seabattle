@@ -22,6 +22,7 @@ var game = new Phaser.Game(config);
 
 function preload() {
   this.load.image("waves", "./assets/pattern.jpg");
+  this.load.image("slash", "./assets/slash.png");
   this.load.image("speaker", "./assets/speaker.png");
   this.load.image("ship1", "./assets/1_ship.png");
   this.load.image("ship2", "./assets/2_ship.png");
@@ -29,6 +30,8 @@ function preload() {
   this.load.image("flower", "./assets/flower.png");
   this.load.image("ship_with_flower", "./assets/2ship_with_flower.png");
   this.load.audio("sea", ["./assets/sea.mp3"]);
+  this.load.audio("hit", ["./assets/hit.wav"]);
+  this.load.audio("miss", ["./assets/miss.wav"]);
 }
 
 let ships_config = [];
@@ -38,6 +41,11 @@ let scoreText;
 var shotCounter = 0;
 //var gameOver = 0;
 var sea;
+var hit;
+var miss;
+var slash;
+var isMute;
+
 
 
 function create() {
@@ -122,6 +130,8 @@ function create() {
     let scene = this;
     
     splash.on("pointerdown", function () {
+      miss = scene.sound.add('miss', {volume: 0.4});
+      miss.play();
       if (this.alpha != 1) {
         shotCounter++;
         this.alpha = 1;
@@ -184,6 +194,10 @@ function create() {
     let winnerText;
     let scene = this;
     ship1.on("pointerdown", function () {
+      hit = scene.sound.add('hit', {volume: 0.4});
+      hit.play({
+        seek: 2.550
+      });
       if (this.alpha != 1) {
         score++;
         this.alpha = 1;
@@ -241,6 +255,10 @@ function create() {
     ship2.state = 2;
 
     ship2.on("pointerdown", function () {
+      hit = scene.sound.add('hit', {volume: 0.4});
+      hit.play({
+        seek: 2.550
+      });
       if (this.alpha != 1) {
         score++;
         // this.alpha = 1;
@@ -275,23 +293,32 @@ function create() {
   let scene = this;
 
 
-
+    slash = this.add.image(50, 50, "slash");
+    slash.setScale(0.2,0.2)
+   
     speaker.on("pointerdown", function () {
-    
+      // sea = scene.sound.add('sea');
+      // sea.play({
+      //     seek: 2.550
+      // });
+      // if(sea.play()){
+      //   speaker.on("pointerdown", function () {
+      //     sea.mute()
+      //   });
+      // } 
       sea = scene.sound.add('sea');
-
-      sea.play({
-          seek: 2.550
-      });
-      if(sea.play){
-        speaker.on("pointerdown", function () {
-          sea.pause()
-        });
-      } else {
-        sea.resume()
-      }
-      
+      sea.play()
+      slash.alpha = 1;
+      toggleSound()
     });
+    function toggleSound(){
+      slash.alpha = 0;
+      // isMute = scene.sound.add('sea');
+      // isMute = scene.sound.add('sea');
+      sea.mute();
+    }
+    slash.alpha = 1;
+    
 
     //https://phaser.io/examples/v3/view/audio/html5-audio/markers-pause-resume
 
