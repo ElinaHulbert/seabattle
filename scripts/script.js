@@ -29,6 +29,7 @@ let splash_config = [];
 let score = 0;
 let scoreText;
 var shotCounter = 0;
+let attemptText;
 
 function create() {
   //background
@@ -41,15 +42,25 @@ function create() {
   let y_0 = 120;
 
   //Score
-  scoreText = this.add.text(340, 70, "score: 0", {
+  scoreText = this.add.text(328, 70, `score: ${score} /10`, {
     fontSize: "32px",
     fill: "#000",
     backgroundColor: "#dffbff",
-    fontFamily: "Georgia",
+    fontFamily: 'carino_sanssemibold',
+  });
+
+  //Attempts
+  attemptText = this.add.text(260, 530, `attempts: ${shotCounter} /20`, {
+    fontSize: "32px",
+    fill: "#000",
+    backgroundColor: "#dffbff",
+    fontFamily: 'carino_sanssemibold',
   });
 
   //Score text padding
   scoreText.setPadding({ x: 10, y: 5 });
+  attemptText.setPadding({ x: 10, y: 5 });
+  
 
   // grid
   var grid = this.add.grid(
@@ -105,6 +116,8 @@ function create() {
         shotCounter++;
         this.alpha = 1;
         console.log(shotCounter);
+        //setting attempts here????????????????????????????????????????????????????????
+        attemptText.setText("attempts: " + shotCounter + " /20");
       }
       if (shotCounter == 2) {
         setTimeout(() => {onEvent()}, 500);
@@ -117,12 +130,15 @@ function create() {
           fontSize: "32px",
           fill: "#000",
           backgroundColor: "#dffbff",
-          fontFamily: "Georgia",
+          fontFamily: 'carino_sanssemibold',
         });
         loserText.setPadding({ x: 10, y: 5 });
         loserText.setText("YOU LOST! ALL SHIPS ARE STILL FLOATING!");
       }}
     });
+    ///////////////////////TEXT FOR SHOOT COUNTER/////////////////////////////////
+    
+    
   }
 //////////////////////////////1 CELL SHIP/////////////////////////////////////////
   let i;
@@ -165,7 +181,7 @@ function create() {
       if (this.alpha != 1) {
         score++;
         this.alpha = 1;
-        scoreText.setText("score: " + score);
+        scoreText.setText("score: " + score + " /10");
         if (score == 10) {
  
       setTimeout(() => {onEvent()}, 1000);
@@ -179,7 +195,7 @@ function create() {
             fontSize: "32px",
             fill: "#000",
             backgroundColor: "#dffbff",
-            fontFamily: "Georgia",
+            fontFamily: 'carino_sanssemibold',
           });
           winnerText.setPadding({ x: 10, y: 5 });
           winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
@@ -245,8 +261,8 @@ function create() {
         if (this.state == 0) {
           this.alpha = 1;
         }
-
-        scoreText.setText("score: " + score);
+//SCORE TEXT APPENDED TO THE PAGE
+        scoreText.setText("score: " + score + " /10");
        // TIMER
         if (score == 10) {
           setTimeout(() => {onEvent()}, 1000);
@@ -259,7 +275,7 @@ function create() {
             fontSize: "32px",
             fill: "#000",
             backgroundColor: "#dffbff",
-            fontFamily: "Georgia",
+            fontFamily: 'carino_sanssemibold',
           });
           winnerText.setPadding({ x: 10, y: 5 });
           winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");

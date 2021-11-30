@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'carino_sanssemibold';
+  src: url('../font/carinosanssemibold-webfont.woff2') format('woff2'),
+       url('../font/carinosanssemibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
 body{
     padding:0px;
     margin: 0px;
