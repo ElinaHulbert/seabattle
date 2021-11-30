@@ -2,11 +2,9 @@ var config = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
-  // backgroundColor: "#AFD0DB",
   scene: {
     preload: preload,
     create: create,
-    // update: update,
   },
   scale: {
     mode: Phaser.Scale.FIT,
@@ -31,7 +29,6 @@ let splash_config = [];
 let score = 0;
 let scoreText;
 var shotCounter = 0;
-//var gameOver = 0;
 
 function create() {
   //background
@@ -68,20 +65,12 @@ function create() {
     1
   );
 
-  // let ship1_x_size = 22;
   let ship1_y_size = 35;
   let splash_y_size = 60;
   let total_number_ships1 = 4;
   let total_number_splash = cell_quantity * cell_quantity;
 
   var count = 0;
-
-  // function createScene(SceneClass) {
-  //   var sceneKey = "window" + count++;
-  //   var scene = new SceneClass(sceneKey);
-
-  //   this.scene.add(sceneKey, scene, true);
-  // }
 
   for (
     let splash_number = 0;
@@ -94,8 +83,6 @@ function create() {
       k = Phaser.Math.Between(0, cell_quantity - 1);
       l = Phaser.Math.Between(0, cell_quantity - 1);
     }
-
-    // console.log(ships_config, " ships_config")
     splash_config.push([k, l]);
 
     var splash = this.add.sprite(
@@ -105,13 +92,8 @@ function create() {
     );
 
     splash.setScale((0.9 * cell_size) / splash_y_size);
-    // splash.setSize((0.9 * cell_size) / splash_y_size, (0.9 * cell_size) / splash_y_size);
-    // splash.GetCenter(rect);
-    // splash.setSize(53.6, 53.6, 0, 0)
     splash.setInteractive();
     splash.input.hitArea.setTo(-2, -2, 55, 55);
-    
-  //  this.input.enableDebug(splash);
     splash.alpha = 0.000001;
 
     let loserText;
@@ -127,8 +109,7 @@ function create() {
         console.log("You lost!");
         let newBackground = scene.add.image(400, 300, "waves");
         newBackground.displayWidth = 800;
-        newBackground.displayHeight = 600;
-        // winnerText.setText();
+        newBackground.displayHeight = 600;;
         loserText = scene.add.text(340, 70, {
           fontSize: "32px",
           fill: "#000",
@@ -186,7 +167,6 @@ function create() {
           let newBackground = scene.add.image(400, 300, "waves");
           newBackground.displayWidth = 800;
           newBackground.displayHeight = 600;
-          // winnerText.setText();
           winnerText = scene.add.text(340, 70, {
             fontSize: "32px",
             fill: "#000",
@@ -214,7 +194,6 @@ function create() {
       j = Phaser.Math.Between(0, cell_quantity - 2);
     }
 
-    //ship position is stored in array "ships_config"
     ships_config.push([i, j]);
     ships_config.push([i, j + 1]);
 
@@ -238,25 +217,23 @@ function create() {
     ship2.on("pointerdown", function () {
       if (this.alpha != 1) {
         score++;
-        // this.alpha = 1;
         this.state--;
 
         let i = Math.floor((scene.input.activePointer.x - x_0) / cell_size);
         let j = Math.floor((scene.input.activePointer.y - y_0) / cell_size);
-
-        scene.add.sprite(
+        
+          
+        ///////////////////////////FLOWER//////////////////////////////////////////////////////////
+         
+       let flower =  scene.add.sprite(
           x_0 + cell_size * (i + 0.5),
           y_0 + cell_size * (j + 0.5),
           "flower"
         );
 
+        flower.setInteractive();
+        
         if (this.state == 0) {
-          // var ship_with_flower = scene.add.sprite(
-          //   x_0 + cell_size * (i + 0.5),
-          //   y_0 + cell_size * (j - 2),
-          //   "ship_with_flower"
-          // );
-
           this.alpha = 1;
         }
 
@@ -267,7 +244,6 @@ function create() {
           let newBackground = scene.add.image(400, 300, "waves");
           newBackground.displayWidth = 800;
           newBackground.displayHeight = 600;
-          // winnerText.setText();
           winnerText = scene.add.text(340, 70, {
             fontSize: "32px",
             fill: "#000",
