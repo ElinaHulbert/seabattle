@@ -222,7 +222,7 @@ function create() {
     this.input.enableDebug(ship2);
 
     let scene = this;
-
+    let winnerText;
     ship2.state = 2;
 
     ship2.on("pointerdown", function () {
@@ -251,6 +251,22 @@ function create() {
         }
 
         scoreText.setText("score: " + score);
+
+        if (score == 10) {
+          console.log("You won!");
+          let newBackground = scene.add.image(400, 300, "waves");
+          newBackground.displayWidth = 800;
+          newBackground.displayHeight = 600;
+          // winnerText.setText();
+          winnerText = scene.add.text(340, 70, {
+            fontSize: "32px",
+            fill: "#000",
+            backgroundColor: "#dffbff",
+            fontFamily: "Georgia",
+          });
+          winnerText.setPadding({ x: 10, y: 5 });
+          winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
+        }
       }
     });
   }
