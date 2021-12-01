@@ -33,15 +33,19 @@ function preload() {
   this.load.audio("sea", ["./assets/sea.mp3"]);
   this.load.audio("hit", ["./assets/hit.wav"]);
   this.load.audio("miss", ["./assets/miss.wav"]);
+  this.load.audio("sad", ["./assets/sad.wav"]);
   this.load.image("red_particle", "assets/red_particle.png");
   // this.load.atlas(
   //   "fireworks",
   //   "./assets/Firework.png",
   //   "assets/fireworks.json"
   // );
+  this.load.audio("kids_cheering", "assets/kids_cheering.mp3")
   this.load.atlas("gems", "assets/gems.png", "assets/gems.json");
   this.load.path = "assets/";
   this.load.multiatlas("firework", "fireworks.json");
+  this.load.path = "assets/";
+  this.load.multiatlas("sceleton", "sceleton.json");
 }
 
 let ships_config = [];
@@ -166,6 +170,30 @@ function create() {
             }
           );
           loserText.setPadding({ x: 15, y: 15 });
+          scene.anims.create({
+            key: "sceleton",
+            frames: [
+              { key: "sceleton", frame: "sceleton/death_000.png" },
+              { key: "sceleton", frame: "sceleton/death_001.png" },
+              { key: "sceleton", frame: "sceleton/death_002.png" },
+              { key: "sceleton", frame: "sceleton/death_003.png" },
+              { key: "sceleton", frame: "sceleton/death_004.png" },
+              { key: "sceleton", frame: "sceleton/death_005.png" },
+              { key: "sceleton", frame: "sceleton/death_006.png" },
+              { key: "sceleton", frame: "sceleton/death_007.png" },
+              { key: "sceleton", frame: "sceleton/death_008.png" },
+              { key: "sceleton", frame: "sceleton/death_009.png" },
+              { key: "sceleton", frame: "sceleton/death_010.png" },
+              { key: "sceleton", frame: "sceleton/death_011.png" },
+              
+            ],
+            frameRate: 20,
+            repeat: -1
+          });
+          let sad;
+            sad = scene.sound.add("sad", { volume: 0.4 });
+            sad.play();
+          scene.add.sprite(100, 100, "sceleton").play("sceleton").setScale(0.3,0.3);
         }
       }
     });
@@ -237,7 +265,60 @@ function create() {
                 fontFamily: "carino_sanssemibold",
               }
             );
-            winnerText.setPadding({ x: 15, y: 15 });
+            winnerText.setPadding({ x: 15, y: 15 });scene.anims.create({
+              key: "firework",
+              frames: [
+                { key: "firework", frame: "New-folder/firework-0" },
+                { key: "firework", frame: "New-folder/firework-1" },
+                { key: "firework", frame: "New-folder/firework-2" },
+                { key: "firework", frame: "New-folder/firework-3" },
+                { key: "firework", frame: "New-folder/firework-4" },
+                { key: "firework", frame: "New-folder/firework-5" },
+                { key: "firework", frame: "New-folder/firework-6" },
+                { key: "firework", frame: "New-folder/firework-7" },
+                { key: "firework", frame: "New-folder/firework-8" },
+                { key: "firework", frame: "New-folder/firework-9" },
+                { key: "firework", frame: "New-folder/firework-10" },
+                { key: "firework", frame: "New-folder/firework-11" },
+                { key: "firework", frame: "New-folder/firework-12" },
+                { key: "firework", frame: "New-folder/firework-13" },
+                { key: "firework", frame: "New-folder/firework-14" },
+                { key: "firework", frame: "New-folder/firework-15" },
+                { key: "firework", frame: "New-folder/firework-16" },
+                { key: "firework", frame: "New-folder/firework-17" },
+                { key: "firework", frame: "New-folder/firework-18" },
+                { key: "firework", frame: "New-folder/firework-19" },
+                { key: "firework", frame: "New-folder/firework-20" },
+                { key: "firework", frame: "New-folder/firework-21" },
+                { key: "firework", frame: "New-folder/firework-22" },
+                { key: "firework", frame: "New-folder/firework-23" },
+                { key: "firework", frame: "New-folder/firework-24" },
+                { key: "firework", frame: "New-folder/firework-25" },
+                { key: "firework", frame: "New-folder/firework-26" },
+                { key: "firework", frame: "New-folder/firework-27" },
+              ],
+              frameRate: 20,
+              repeat: -1
+            });
+            setTimeout(() => {
+              firstFirework();
+            }, 500);
+            setTimeout(() => {
+              secondFirework();
+            }, 700);
+            setTimeout(() => {
+              thirdFirework();
+            }, 800);
+            function firstFirework(){
+            scene.add.sprite(200, 200, "firework").play("firework", true).setScale(2, 2);
+            let cheer;
+            cheer = scene.sound.add("kids_cheering", { volume: 0.4 });
+            cheer.play();
+            }
+            function secondFirework(){
+            scene.add.sprite(400, 500, "firework").play("firework", true);}
+            function thirdFirework(){
+            scene.add.sprite(600, 250, "firework").play("firework", true).setScale(1.5, 1.5);}
           }
         }
       }
@@ -370,8 +451,28 @@ function create() {
                 { key: "firework", frame: "New-folder/firework-27" },
               ],
               frameRate: 20,
+              repeat: -1
             });
-            scene.add.sprite(50, 50, "firework").play("firework");
+            setTimeout(() => {
+              firstFirework();
+            }, 500);
+            setTimeout(() => {
+              secondFirework();
+            }, 700);
+            setTimeout(() => {
+              thirdFirework();
+            }, 800);
+            function firstFirework(){
+            scene.add.sprite(200, 200, "firework").play("firework", true).setScale(2, 2);
+            let cheer;
+            cheer = scene.sound.add("kids_cheering", { volume: 0.4 });
+            cheer.play();
+            }
+            function secondFirework(){
+            scene.add.sprite(400, 500, "firework").play("firework", true);}
+            function thirdFirework(){
+            scene.add.sprite(600, 250, "firework").play("firework", true).setScale(1.5, 1.5);}
+            
           }
         }
       }
