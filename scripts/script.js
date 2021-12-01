@@ -42,25 +42,24 @@ function create() {
   let y_0 = 120;
 
   //Score
-  scoreText = this.add.text(328, 70, `score: ${score} /10`, {
+  scoreText = this.add.text(300, 70, `score: ${score} /10`, {
     fontSize: "32px",
     fill: "#000",
     backgroundColor: "#dffbff",
-    fontFamily: 'carino_sanssemibold',
+    fontFamily: "carino_sanssemibold",
   });
 
   //Attempts
-  attemptText = this.add.text(260, 530, `attempts: ${shotCounter} /20`, {
+  attemptText = this.add.text(265, 530, `attempts: ${shotCounter} /20`, {
     fontSize: "32px",
     fill: "#000",
     backgroundColor: "#dffbff",
-    fontFamily: 'carino_sanssemibold',
+    fontFamily: "carino_sanssemibold",
   });
 
   //Score text padding
   scoreText.setPadding({ x: 10, y: 5 });
   attemptText.setPadding({ x: 10, y: 5 });
-  
 
   // grid
   var grid = this.add.grid(
@@ -82,8 +81,8 @@ function create() {
   let total_number_splash = cell_quantity * cell_quantity;
 
   var count = 0;
-//////////////////////////SPLASHES////////////////////////////////////
-  
+  //////////////////////////SPLASHES////////////////////////////////////
+
   for (
     let splash_number = 0;
     splash_number < total_number_splash;
@@ -120,27 +119,32 @@ function create() {
         attemptText.setText("attempts: " + shotCounter + " /20");
       }
       if (shotCounter == 2) {
-        setTimeout(() => {onEvent()}, 500);
-        function onEvent(){
-        console.log("You lost!");
-        let newBackground = scene.add.image(400, 300, "waves");
-        newBackground.displayWidth = 800;
-        newBackground.displayHeight = 600;;
-        loserText = scene.add.text(340, 70, {
-          fontSize: "32px",
-          fill: "#000",
-          backgroundColor: "#dffbff",
-          fontFamily: 'carino_sanssemibold',
-        });
-        loserText.setPadding({ x: 10, y: 5 });
-        loserText.setText("YOU LOST! ALL SHIPS ARE STILL FLOATING!");
-      }}
+        setTimeout(() => {
+          onEvent();
+        }, 500);
+        function onEvent() {
+          console.log("You lost!");
+          let newBackground = scene.add.image(400, 300, "waves");
+          newBackground.displayWidth = 800;
+          newBackground.displayHeight = 600;
+          loserText = scene.add.text(
+            60,
+            300,
+            "YOU LOST! ALL SHIPS ARE STILL FLOATING!",
+            {
+              fontSize: "32px",
+              fill: "#000",
+              backgroundColor: "#dffbff",
+              fontFamily: "carino_sanssemibold",
+            }
+          );
+          loserText.setPadding({ x: 15, y: 15 });
+        }
+      }
     });
     ///////////////////////TEXT FOR SHOOT COUNTER/////////////////////////////////
-    
-    
   }
-//////////////////////////////1 CELL SHIP/////////////////////////////////////////
+  //////////////////////////////1 CELL SHIP/////////////////////////////////////////
   let i;
   let j;
 
@@ -183,27 +187,33 @@ function create() {
         this.alpha = 1;
         scoreText.setText("score: " + score + " /10");
         if (score == 10) {
- 
-      setTimeout(() => {onEvent()}, 1000);
-        function onEvent(){
-          console.log("You won!");
-          
-          let newBackground = scene.add.image(400, 300, "waves");
-          newBackground.displayWidth = 800;
-          newBackground.displayHeight = 600;
-          winnerText = scene.add.text(340, 70, {
-            fontSize: "32px",
-            fill: "#000",
-            backgroundColor: "#dffbff",
-            fontFamily: 'carino_sanssemibold',
-          });
-          winnerText.setPadding({ x: 10, y: 5 });
-          winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
-        }}
+          setTimeout(() => {
+            onEvent();
+          }, 1000);
+          function onEvent() {
+            console.log("You won!");
+
+            let newBackground = scene.add.image(400, 300, "waves");
+            newBackground.displayWidth = 800;
+            newBackground.displayHeight = 600;
+            winnerText = scene.add.text(
+              100,
+              300,
+              "YOU WON! ALL SHIPS ARE DEFEATED!",
+              {
+                fontSize: "32px",
+                fill: "#000",
+                backgroundColor: "#dffbff",
+                fontFamily: "carino_sanssemibold",
+              }
+            );
+            winnerText.setPadding({ x: 15, y: 15 });
+          }
+        }
       }
     });
   }
-//////////////////////////////2 CELL SHIP/////////////////////////////////////////
+  //////////////////////////////2 CELL SHIP/////////////////////////////////////////
 
   for (let ship_number = 0; ship_number < 3; ship_number++) {
     let i = Phaser.Math.Between(0, cell_quantity - 1);
@@ -231,7 +241,6 @@ function create() {
     ship2.alpha = 0.000001;
     ship2.setInteractive();
     ship2.input.hitArea.setTo(-6, 0, 39, 80);
-        
 
     this.input.enableDebug(ship2);
 
@@ -246,41 +255,43 @@ function create() {
 
         let i = Math.floor((scene.input.activePointer.x - x_0) / cell_size);
         let j = Math.floor((scene.input.activePointer.y - y_0) / cell_size);
-        
-          
+
         ///////////////////////////FLOWER//////////////////////////////////////////////////////////
-         
-       let flower =  scene.add.sprite(
+
+        let flower = scene.add.sprite(
           x_0 + cell_size * (i + 0.5),
           y_0 + cell_size * (j + 0.5),
           "flower"
         );
 
         flower.setInteractive();
-        
+
         if (this.state == 0) {
           this.alpha = 1;
         }
-//SCORE TEXT APPENDED TO THE PAGE
+        //SCORE TEXT APPENDED TO THE PAGE
         scoreText.setText("score: " + score + " /10");
-       // TIMER
+        // TIMER
         if (score == 10) {
-          setTimeout(() => {onEvent()}, 1000);
-        function onEvent(){
-          console.log("You won!");
-          let newBackground = scene.add.image(400, 300, "waves");
-          newBackground.displayWidth = 800;
-          newBackground.displayHeight = 600;
-          winnerText = scene.add.text(340, 70, {
-            fontSize: "32px",
-            fill: "#000",
-            backgroundColor: "#dffbff",
-            fontFamily: 'carino_sanssemibold',
-          });
-          winnerText.setPadding({ x: 10, y: 5 });
-          winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
+          setTimeout(() => {
+            onEvent();
+          }, 1000);
+          function onEvent() {
+            console.log("You won!");
+            let newBackground = scene.add.image(400, 300, "waves");
+            newBackground.displayWidth = 800;
+            newBackground.displayHeight = 600;
+            winnerText = scene.add.text(340, 70, {
+              fontSize: "32px",
+              fill: "#000",
+              backgroundColor: "#dffbff",
+              fontFamily: "carino_sanssemibold",
+            });
+            winnerText.setPadding({ x: 10, y: 5 });
+            winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
+          }
         }
-      }}
+      }
     });
   }
 }
