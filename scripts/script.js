@@ -6,6 +6,13 @@ var config = {
     preload: preload,
     create: create,
   },
+  physics: {
+    default: "arcade",
+    arcade: {
+      gravity: false,
+      //debug: true,
+    },
+  },
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -26,6 +33,9 @@ function preload() {
   this.load.audio("sea", ["./assets/sea.mp3"]);
   this.load.audio("hit", ["./assets/hit.wav"]);
   this.load.audio("miss", ["./assets/miss.wav"]);
+  this.load.image("red_particle", "./assets/red_particle.png");
+  // this.load.atlas("fireworks", "./assets/Firework.png", "assets/fireworks.json");
+  this.load.multiatlas("firework", "./assets/fireworks.json", "assets")
 }
 
 let ships_config = [];
@@ -37,6 +47,8 @@ let attemptText;
 let sea;
 let hit;
 let miss;
+let newBackground;
+let firework;
 
 function create() {
   //background
@@ -118,8 +130,8 @@ function create() {
     let scene = this;
 
     splash.on("pointerdown", function () {
-      miss = scene.sound.add('miss', {volume: 0.4});
-      miss.play();
+      miss = scene.sound.add("miss", { volume: 0.4 });
+      // miss.play();
       if (this.alpha != 1) {
         shotCounter++;
         this.alpha = 1;
@@ -133,7 +145,7 @@ function create() {
         }, 500);
         function onEvent() {
           console.log("You lost!");
-          let newBackground = scene.add.image(400, 300, "waves");
+          newBackground = scene.add.image(400, 300, "waves");
           newBackground.displayWidth = 800;
           newBackground.displayHeight = 600;
           loserText = scene.add.text(
@@ -182,20 +194,18 @@ function create() {
     ship1.setScale((0.9 * cell_size) / ship1_y_size);
     ship1.setInteractive();
 
-    
     ship1.input.hitArea.setTo(-7, 3, 36, 36);
     ship1.alpha = 0.000001;
     this.input.enableDebug(ship1);
-   
 
     let winnerText;
     let scene = this;
     // let delay;
     ship1.on("pointerdown", function () {
-      hit = scene.sound.add('hit', {volume: 0.4});
-      hit.play({
-        seek: 2.550
-      });
+      hit = scene.sound.add("hit", { volume: 0.4 });
+      // hit.play({
+      //   seek: 2.55,
+      // });
       if (this.alpha != 1) {
         score++;
         this.alpha = 1;
@@ -205,7 +215,7 @@ function create() {
             onEvent();
           }, 1000);
           function onEvent() {
-            console.log("You won!");
+            // console.log("You won!");
 
             let newBackground = scene.add.image(400, 300, "waves");
             newBackground.displayWidth = 800;
@@ -263,10 +273,10 @@ function create() {
     ship2.state = 2;
 
     ship2.on("pointerdown", function () {
-      hit = scene.sound.add('hit', {volume: 0.4});
-      hit.play({
-        seek: 2.550
-      });
+      hit = scene.sound.add("hit", { volume: 0.4 });
+      // hit.play({
+      //   seek: 2.55,
+      // });
       if (this.alpha != 1) {
         score++;
         this.state--;
@@ -296,20 +306,73 @@ function create() {
           }, 1000);
           function onEvent() {
             console.log("You won!");
+            ////////////////////////////////////////FIREWORKS//////////////////////////////////////////
+            fireworks();
             let newBackground = scene.add.image(400, 300, "waves");
             newBackground.displayWidth = 800;
             newBackground.displayHeight = 600;
-            winnerText = scene.add.text(100, 300, "YOU WON! ALL SHIPS ARE DEFEATED!", {
-              fontSize: "32px",
-              fill: "#000",
-              backgroundColor: "#dffbff",
-              fontFamily: "carino_sanssemibold",
-            });
+            winnerText = scene.add.text(
+              100,
+              300,
+              "YOU WON! ALL SHIPS ARE DEFEATED!",
+              {
+                fontSize: "32px",
+                fill: "#000",
+                backgroundColor: "#dffbff",
+                fontFamily: "carino_sanssemibold",
+              }
+            );
             winnerText.setPadding({ x: 15, y: 15 });
-            // winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
+            // this.firework = scene.add.sprite(200,200,"fireworks")
+            firework = scene.physics.add.sprite(100, 100, 'firework', 'Firework.png')
           }
         }
       }
     });
   }
 }
+
+// var particles = (i % 2 === 0) ? red_particle : spark1;
+function fireworks(scene) {
+  
+  // var particles = scene.add.particles(200, 200, "red_particle");
+
+  // for (let i = 0; i < 10; i++) {
+  //   let x = Phaser.Math.Between(400, 300);
+  //   let y = Phaser.Math.Between(400, 300);
+
+  //   var emitter = particles.createEmitter({
+  //     frame: ["red", "blue", "green", "yellow"],
+  //     x: x,
+  //     y: y,
+  //     speed: 40,
+  //     lifespan: 1000,
+  //     maxParticles: 40,
+  //     scale: { min: 0, max: 0.07 },
+  //     alpha: { start: 0, end: 1 },
+  //     quantity: 3,
+  //     blendMode: "ADD",
+  //     delay: Math.random() * 2000,
+  //   });
+
+  // }
+
+
+  
+}
+
+// player1 = this.physics.add.sprite(10, center.y, 'ship', 'ship.png')
+
+// this.anims.create({
+//   key: 'shelid',
+//   frames: [
+//     { key: 'ship', frame: 'sheld1.png' },
+//     { key: 'ship', frame: 'sheld2.png' },
+//     { key: 'ship', frame: 'sheld3.png' },
+//     { key: 'ship', frame: 'sheld2.png' },
+//     { key: 'ship', frame: 'sheld1.png' },
+//     { key: 'ship', frame: 'ship.png' }
+
+//   ],
+//   frameRate: 20,
+// })
