@@ -25,18 +25,18 @@ function preload() {
   this.load.image("ship_with_flower", "./assets/2ship_with_flower.png");
   this.load.audio("sea", ["./assets/sea.mp3"]);
   this.load.audio("hit", ["./assets/hit.wav"]);
-  this.load.audio("miss", ["./assets/miss.mp3"]);
+  this.load.audio("miss", ["./assets/miss.wav"]);
 }
 
 let ships_config = [];
 let splash_config = [];
 let score = 0;
 let scoreText;
-var shotCounter = 0;
+let shotCounter = 0;
 let attemptText;
-var sea;
-var hit;
-var miss;
+let sea;
+let hit;
+let miss;
 
 function create() {
   //background
@@ -119,9 +119,7 @@ function create() {
 
     splash.on("pointerdown", function () {
       miss = scene.sound.add('miss', {volume: 0.4});
-      miss.play({
-        seek: 2.550
-      });
+      miss.play();
       if (this.alpha != 1) {
         shotCounter++;
         this.alpha = 1;
@@ -184,14 +182,15 @@ function create() {
     ship1.setScale((0.9 * cell_size) / ship1_y_size);
     ship1.setInteractive();
 
-    ship1.alpha = 0.000001;
+    
     ship1.input.hitArea.setTo(-7, 3, 36, 36);
-
+    ship1.alpha = 0.000001;
     this.input.enableDebug(ship1);
+   
 
     let winnerText;
     let scene = this;
-    let delay;
+    // let delay;
     ship1.on("pointerdown", function () {
       hit = scene.sound.add('hit', {volume: 0.4});
       hit.play({
@@ -300,14 +299,14 @@ function create() {
             let newBackground = scene.add.image(400, 300, "waves");
             newBackground.displayWidth = 800;
             newBackground.displayHeight = 600;
-            winnerText = scene.add.text(340, 70, {
+            winnerText = scene.add.text(100, 300, "YOU WON! ALL SHIPS ARE DEFEATED!", {
               fontSize: "32px",
               fill: "#000",
               backgroundColor: "#dffbff",
               fontFamily: "carino_sanssemibold",
             });
-            winnerText.setPadding({ x: 10, y: 5 });
-            winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
+            winnerText.setPadding({ x: 15, y: 15 });
+            // winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
           }
         }
       }
