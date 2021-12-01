@@ -314,7 +314,7 @@ function create() {
             ////////////////////////////////////////FIREWORKS//////////////////////////////////////////
             // fireworks();
             let newBackground = scene.add.image(400, 300, "waves");
-            newBackground.displXayWidth = 800;
+            newBackground.displayWidth = 800;
             newBackground.displayHeight = 600;
             winnerText = scene.add.text(
               100,
