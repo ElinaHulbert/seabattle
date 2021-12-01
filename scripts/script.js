@@ -39,7 +39,6 @@ function preload() {
   //   "./assets/Firework.png",
   //   "assets/fireworks.json"
   // );
-  this.load.atlas("gems", "assets/gems.png", "assets/gems.json");
   this.load.path = "assets/";
   this.load.multiatlas("firework", "fireworks.json");
 }
