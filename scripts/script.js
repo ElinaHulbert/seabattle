@@ -33,9 +33,15 @@ function preload() {
   this.load.audio("sea", ["./assets/sea.mp3"]);
   this.load.audio("hit", ["./assets/hit.wav"]);
   this.load.audio("miss", ["./assets/miss.wav"]);
-  this.load.image("red_particle", "./assets/red_particle.png");
-  // this.load.atlas("fireworks", "./assets/Firework.png", "assets/fireworks.json");
-  this.load.multiatlas("firework", "./assets/fireworks.json", "assets")
+  this.load.image("red_particle", "assets/red_particle.png");
+  // this.load.atlas(
+  //   "fireworks",
+  //   "./assets/Firework.png",
+  //   "assets/fireworks.json"
+  // );
+  this.load.atlas("gems", "assets/gems.png", "assets/gems.json");
+  this.load.path = "assets/";
+  this.load.multiatlas("firework", "fireworks.json");
 }
 
 let ships_config = [];
@@ -307,9 +313,9 @@ function create() {
           function onEvent() {
             console.log("You won!");
             ////////////////////////////////////////FIREWORKS//////////////////////////////////////////
-            fireworks();
+            // fireworks();
             let newBackground = scene.add.image(400, 300, "waves");
-            newBackground.displayWidth = 800;
+            newBackground.displXayWidth = 800;
             newBackground.displayHeight = 600;
             winnerText = scene.add.text(
               100,
@@ -324,7 +330,48 @@ function create() {
             );
             winnerText.setPadding({ x: 15, y: 15 });
             // this.firework = scene.add.sprite(200,200,"fireworks")
-            firework = scene.physics.add.sprite(100, 100, 'firework', 'Firework.png')
+            // firework = scene.physics.add.sprite(
+            //   100,
+            //   100,
+            //   "firework",
+            //   "Firework.png"
+            // );
+
+            scene.anims.create({
+              key: "firework",
+              frames: [
+                { key: "firework", frame: "New-folder/firework-0" },
+                { key: "firework", frame: "New-folder/firework-1" },
+                { key: "firework", frame: "New-folder/firework-2" },
+                { key: "firework", frame: "New-folder/firework-3" },
+                { key: "firework", frame: "New-folder/firework-4" },
+                { key: "firework", frame: "New-folder/firework-5" },
+                { key: "firework", frame: "New-folder/firework-6" },
+                { key: "firework", frame: "New-folder/firework-7" },
+                { key: "firework", frame: "New-folder/firework-8" },
+                { key: "firework", frame: "New-folder/firework-9" },
+                { key: "firework", frame: "New-folder/firework-10" },
+                { key: "firework", frame: "New-folder/firework-11" },
+                { key: "firework", frame: "New-folder/firework-12" },
+                { key: "firework", frame: "New-folder/firework-13" },
+                { key: "firework", frame: "New-folder/firework-14" },
+                { key: "firework", frame: "New-folder/firework-15" },
+                { key: "firework", frame: "New-folder/firework-16" },
+                { key: "firework", frame: "New-folder/firework-17" },
+                { key: "firework", frame: "New-folder/firework-18" },
+                { key: "firework", frame: "New-folder/firework-19" },
+                { key: "firework", frame: "New-folder/firework-20" },
+                { key: "firework", frame: "New-folder/firework-21" },
+                { key: "firework", frame: "New-folder/firework-22" },
+                { key: "firework", frame: "New-folder/firework-23" },
+                { key: "firework", frame: "New-folder/firework-24" },
+                { key: "firework", frame: "New-folder/firework-25" },
+                { key: "firework", frame: "New-folder/firework-26" },
+                { key: "firework", frame: "New-folder/firework-27" },
+              ],
+              frameRate: 20,
+            });
+            scene.add.sprite(50, 50, "firework").play("firework");
           }
         }
       }
@@ -334,13 +381,10 @@ function create() {
 
 // var particles = (i % 2 === 0) ? red_particle : spark1;
 function fireworks(scene) {
-  
   // var particles = scene.add.particles(200, 200, "red_particle");
-
   // for (let i = 0; i < 10; i++) {
   //   let x = Phaser.Math.Between(400, 300);
   //   let y = Phaser.Math.Between(400, 300);
-
   //   var emitter = particles.createEmitter({
   //     frame: ["red", "blue", "green", "yellow"],
   //     x: x,
@@ -354,25 +398,7 @@ function fireworks(scene) {
   //     blendMode: "ADD",
   //     delay: Math.random() * 2000,
   //   });
-
   // }
-
-
-  
 }
 
 // player1 = this.physics.add.sprite(10, center.y, 'ship', 'ship.png')
-
-// this.anims.create({
-//   key: 'shelid',
-//   frames: [
-//     { key: 'ship', frame: 'sheld1.png' },
-//     { key: 'ship', frame: 'sheld2.png' },
-//     { key: 'ship', frame: 'sheld3.png' },
-//     { key: 'ship', frame: 'sheld2.png' },
-//     { key: 'ship', frame: 'sheld1.png' },
-//     { key: 'ship', frame: 'ship.png' }
-
-//   ],
-//   frameRate: 20,
-// })
