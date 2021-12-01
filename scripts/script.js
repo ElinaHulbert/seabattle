@@ -17,11 +17,15 @@ var game = new Phaser.Game(config);
 
 function preload() {
   this.load.image("waves", "./assets/pattern.jpg");
+  this.load.image("speaker", "./assets/speaker.png");
   this.load.image("ship1", "./assets/1_ship.png");
   this.load.image("ship2", "./assets/2_ship.png");
   this.load.image("splash", "./assets/water_splash.png");
   this.load.image("flower", "./assets/flower.png");
   this.load.image("ship_with_flower", "./assets/2ship_with_flower.png");
+  this.load.audio("sea", ["./assets/sea.mp3"]);
+  this.load.audio("hit", ["./assets/hit.wav"]);
+  this.load.audio("miss", ["./assets/miss.mp3"]);
 }
 
 let ships_config = [];
@@ -30,6 +34,9 @@ let score = 0;
 let scoreText;
 var shotCounter = 0;
 let attemptText;
+var sea;
+var hit;
+var miss;
 
 function create() {
   //background
@@ -112,6 +119,10 @@ function create() {
     let scene = this;
 
     splash.on("pointerdown", function () {
+      miss = scene.sound.add('miss', {volume: 0.4});
+      miss.play({
+        seek: 2.550
+      });
       if (this.alpha != 1) {
         shotCounter++;
         this.alpha = 1;
@@ -178,6 +189,10 @@ function create() {
     let scene = this;
     let delay;
     ship1.on("pointerdown", function () {
+      hit = scene.sound.add('hit', {volume: 0.4});
+      hit.play({
+        seek: 2.550
+      });
       if (this.alpha != 1) {
         score++;
         this.alpha = 1;
@@ -240,6 +255,10 @@ function create() {
     ship2.state = 2;
 
     ship2.on("pointerdown", function () {
+      hit = scene.sound.add('hit', {volume: 0.4});
+      hit.play({
+        seek: 2.550
+      });
       if (this.alpha != 1) {
         score++;
         this.state--;
