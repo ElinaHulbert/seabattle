@@ -50,7 +50,7 @@ function create() {
   let y_0 = 120;
 
   //Score
-  scoreText = this.add.text(300, 70, `score: ${score} /10`, {
+  scoreText = this.add.text(300, 70, `score: ${score} /16`, {
     fontSize: "32px",
     fill: "#000",
     backgroundColor: "#dffbff",
@@ -198,8 +198,8 @@ function create() {
       if (this.alpha != 1) {
         score++;
         this.alpha = 1;
-        scoreText.setText("score: " + score + " /10");
-        if (score == 10) {
+        scoreText.setText("score: " + score + " /16");
+        if (score == 16) {
           setTimeout(() => {
             onEvent();
           }, 1000);
@@ -287,9 +287,9 @@ function create() {
           this.alpha = 1;
         }
         //SCORE TEXT APPENDED TO THE PAGE
-        scoreText.setText("score: " + score + " /10");
+        scoreText.setText("score: " + score + " /16");
         // TIMER
-        if (score == 10) {
+        if (score == 16) {
           setTimeout(() => {
             onEvent();
           }, 1000);
@@ -341,8 +341,7 @@ function create() {
       "flip_ship"
     );
 
-    // flip_ship.alpha = 0.000001;
-    flip_ship.alpha = 1;
+    flip_ship.alpha = 0.000001;
 
     flip_ship.setInteractive();
     flip_ship.input.hitArea.setTo(0, -6, 80, 39);
@@ -379,9 +378,9 @@ function create() {
           this.alpha = 1;
         }
         //SCORE TEXT APPENDED TO THE PAGE
-        scoreText.setText("score: " + score + " /10");
+        scoreText.setText("score: " + score + " /16");
         // TIMER
-        if (score == 10) {
+        if (score == 16) {
           setTimeout(() => {
             onEvent();
           }, 1000);
