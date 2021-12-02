@@ -35,17 +35,11 @@ function preload() {
   this.load.audio("miss", ["./assets/miss.wav"]);
   this.load.audio("sad", ["./assets/sad.wav"]);
   this.load.image("red_particle", "assets/red_particle.png");
-  // this.load.atlas(
-  //   "fireworks",
-  //   "./assets/Firework.png",
-  //   "assets/fireworks.json"
-  // );
+
   this.load.audio("kids_cheering", "assets/kids_cheering.mp3")
-  this.load.atlas("gems", "assets/gems.png", "assets/gems.json");
   this.load.path = "assets/";
   this.load.multiatlas("firework", "fireworks.json");
-  this.load.path = "assets/";
-  this.load.multiatlas("sceleton", "sceleton.json");
+  this.load.multiatlas("sceleton", "sceleton2.json");
 }
 
 let ships_config = [];
@@ -59,6 +53,7 @@ let hit;
 let miss;
 let newBackground;
 let firework;
+let sceleton;
 
 function create() {
   //background
@@ -187,13 +182,13 @@ function create() {
               { key: "sceleton", frame: "sceleton/death_011.png" },
               
             ],
-            frameRate: 20,
+            frameRate: 10,
             repeat: -1
           });
           let sad;
             sad = scene.sound.add("sad", { volume: 0.4 });
             sad.play();
-          scene.add.sprite(100, 100, "sceleton").play("sceleton").setScale(0.3,0.3);
+          scene.add.sprite(475, 470, "sceleton").play("sceleton").setScale(0.3,0.3);
         }
       }
     });
@@ -265,7 +260,9 @@ function create() {
                 fontFamily: "carino_sanssemibold",
               }
             );
-            winnerText.setPadding({ x: 15, y: 15 });scene.anims.create({
+            winnerText.setPadding({ x: 15, y: 15 });
+
+            scene.anims.create({
               key: "firework",
               frames: [
                 { key: "firework", frame: "New-folder/firework-0" },
@@ -318,7 +315,8 @@ function create() {
             function secondFirework(){
             scene.add.sprite(400, 500, "firework").play("firework", true);}
             function thirdFirework(){
-            scene.add.sprite(600, 250, "firework").play("firework", true).setScale(1.5, 1.5);}
+              scene.add.sprite(600, 250, "firework").play("firework", true).setScale(1.5, 1.5);
+            }
           }
         }
       }
@@ -394,7 +392,7 @@ function create() {
           function onEvent() {
             console.log("You won!");
             ////////////////////////////////////////FIREWORKS//////////////////////////////////////////
-            // fireworks();
+            
             let newBackground = scene.add.image(400, 300, "waves");
             newBackground.displayWidth = 800;
             newBackground.displayHeight = 600;
@@ -410,13 +408,6 @@ function create() {
               }
             );
             winnerText.setPadding({ x: 15, y: 15 });
-            // this.firework = scene.add.sprite(200,200,"fireworks")
-            // firework = scene.physics.add.sprite(
-            //   100,
-            //   100,
-            //   "firework",
-            //   "Firework.png"
-            // );
 
             scene.anims.create({
               key: "firework",
@@ -480,26 +471,3 @@ function create() {
   }
 }
 
-// var particles = (i % 2 === 0) ? red_particle : spark1;
-function fireworks(scene) {
-  // var particles = scene.add.particles(200, 200, "red_particle");
-  // for (let i = 0; i < 10; i++) {
-  //   let x = Phaser.Math.Between(400, 300);
-  //   let y = Phaser.Math.Between(400, 300);
-  //   var emitter = particles.createEmitter({
-  //     frame: ["red", "blue", "green", "yellow"],
-  //     x: x,
-  //     y: y,
-  //     speed: 40,
-  //     lifespan: 1000,
-  //     maxParticles: 40,
-  //     scale: { min: 0, max: 0.07 },
-  //     alpha: { start: 0, end: 1 },
-  //     quantity: 3,
-  //     blendMode: "ADD",
-  //     delay: Math.random() * 2000,
-  //   });
-  // }
-}
-
-// player1 = this.physics.add.sprite(10, center.y, 'ship', 'ship.png')
