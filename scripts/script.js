@@ -27,6 +27,7 @@ function preload() {
   this.load.image("speaker", "./assets/speaker.png");
   this.load.image("ship1", "./assets/1_ship.png");
   this.load.image("ship2", "./assets/2_ship.png");
+  this.load.image("flip_ship", "./assets/flip_ship.png");
   this.load.image("splash", "./assets/water_splash.png");
   this.load.image("flower", "./assets/flower.png");
   this.load.image("ship_with_flower", "./assets/2ship_with_flower.png");
@@ -66,7 +67,7 @@ function create() {
   let y_0 = 120;
 
   //Score
-  scoreText = this.add.text(300, 70, `score: ${score} /10`, {
+  scoreText = this.add.text(300, 70, `score: ${score} /16`, {
     fontSize: "32px",
     fill: "#000",
     backgroundColor: "#dffbff",
@@ -136,7 +137,7 @@ function create() {
 
     splash.on("pointerdown", function () {
       miss = scene.sound.add("miss", { volume: 0.4 });
-      // miss.play();
+      miss.play();
       if (this.alpha != 1) {
         shotCounter++;
         this.alpha = 1;
@@ -144,7 +145,7 @@ function create() {
         //setting attempts here????????????????????????????????????????????????????????
         attemptText.setText("attempts: " + shotCounter + " /20");
       }
-      if (shotCounter == 2) {
+      if (shotCounter == 10) {
         setTimeout(() => {
           onEvent();
         }, 500);
@@ -232,14 +233,14 @@ function create() {
     // let delay;
     ship1.on("pointerdown", function () {
       hit = scene.sound.add("hit", { volume: 0.4 });
-      // hit.play({
-      //   seek: 2.55,
-      // });
+      hit.play({
+        seek: 2.55,
+      });
       if (this.alpha != 1) {
         score++;
         this.alpha = 1;
-        scoreText.setText("score: " + score + " /10");
-        if (score == 10) {
+        scoreText.setText("score: " + score + " /16");
+        if (score == 16) {
           setTimeout(() => {
             onEvent();
           }, 1000);
@@ -359,9 +360,9 @@ function create() {
 
     ship2.on("pointerdown", function () {
       hit = scene.sound.add("hit", { volume: 0.4 });
-      // hit.play({
-      //   seek: 2.55,
-      // });
+      hit.play({
+        seek: 2.55,
+      });
       if (this.alpha != 1) {
         score++;
         this.state--;
@@ -383,9 +384,9 @@ function create() {
           this.alpha = 1;
         }
         //SCORE TEXT APPENDED TO THE PAGE
-        scoreText.setText("score: " + score + " /10");
+        scoreText.setText("score: " + score + " /16");
         // TIMER
-        if (score == 10) {
+        if (score == 16) {
           setTimeout(() => {
             onEvent();
           }, 1000);
@@ -393,6 +394,97 @@ function create() {
             console.log("You won!");
             ////////////////////////////////////////FIREWORKS//////////////////////////////////////////
             
+            let newBackground = scene.add.image(400, 300, "waves");
+            newBackground.displayWidth = 800;
+            newBackground.displayHeight = 600;
+            winnerText = scene.add.text(
+              100,
+              300,
+              "YOU WON! ALL SHIPS ARE DEFEATED!",
+              {
+                fontSize: "32px",
+                fill: "#000",
+                backgroundColor: "#dffbff",
+                fontFamily: "carino_sanssemibold",
+              }
+            );
+            winnerText.setPadding({ x: 15, y: 15 });
+            // winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
+          }
+        }
+      }
+    });
+  }
+  ////////////////////////////// FLIPPED 2 CELL SHIP/////////////////////////////////////////
+
+  for (let ship_number = 0; ship_number < 3; ship_number++) {
+    let i = Phaser.Math.Between(1, cell_quantity - 2);
+    let j = Phaser.Math.Between(0, cell_quantity - 2);
+
+    while (
+      ships_config.some(
+        (ship) =>
+          (ship[0] == i && ship[1] == j) || (ship[0] == i + 1 && ship[1] == j)
+      )
+    ) {
+      i = Phaser.Math.Between(1, cell_quantity - 2);
+      j = Phaser.Math.Between(0, cell_quantity - 2);
+    }
+
+    ships_config.push([i, j]);
+    ships_config.push([i + 1, j]);
+
+    var flip_ship = this.add.sprite(
+      x_0 + cell_size * (i + 0),
+      y_0 + cell_size * (j + 0.5),
+      "flip_ship"
+    );
+
+    flip_ship.alpha = 0.000001;
+
+    flip_ship.setInteractive();
+    flip_ship.input.hitArea.setTo(0, -6, 80, 39);
+
+    this.input.enableDebug(flip_ship);
+
+    let scene = this;
+    let winnerText;
+    flip_ship.state = 2;
+
+    flip_ship.on("pointerdown", function () {
+      hit = scene.sound.add("hit", { volume: 0.4 });
+      hit.play({
+        seek: 2.55,
+      });
+      if (this.alpha != 1) {
+        score++;
+        this.state--;
+
+        let i = Math.floor((scene.input.activePointer.x - x_0) / cell_size);
+        let j = Math.floor((scene.input.activePointer.y - y_0) / cell_size);
+
+        ///////////////////////////FLOWER//////////////////////////////////////////////////////////
+
+        let flower = scene.add.sprite(
+          x_0 + cell_size * (i + 0.5),
+          y_0 + cell_size * (j + 0.5),
+          "flower"
+        );
+
+        flower.setInteractive();
+
+        if (this.state == 0) {
+          this.alpha = 1;
+        }
+        //SCORE TEXT APPENDED TO THE PAGE
+        scoreText.setText("score: " + score + " /16");
+        // TIMER
+        if (score == 16) {
+          setTimeout(() => {
+            onEvent();
+          }, 1000);
+          function onEvent() {
+            console.log("You won!");
             let newBackground = scene.add.image(400, 300, "waves");
             newBackground.displayWidth = 800;
             newBackground.displayHeight = 600;
