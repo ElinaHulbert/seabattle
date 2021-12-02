@@ -1,0 +1,272 @@
+{
+	"textures": [
+		{
+			"image": "sceleton2-0.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1517,
+				"h": 1795
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "sceleton/death_008.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 103,
+						"y": 364,
+						"w": 361,
+						"h": 381
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 361,
+						"h": 381
+					}
+				},
+				{
+					"filename": "sceleton/death_007.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 142,
+						"y": 372,
+						"w": 340,
+						"h": 394
+					},
+					"frame": {
+						"x": 364,
+						"y": 1,
+						"w": 340,
+						"h": 394
+					}
+				},
+				{
+					"filename": "sceleton/death_006.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 187,
+						"y": 372,
+						"w": 313,
+						"h": 401
+					},
+					"frame": {
+						"x": 706,
+						"y": 1,
+						"w": 313,
+						"h": 401
+					}
+				},
+				{
+					"filename": "sceleton/death_009.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 146,
+						"y": 372,
+						"w": 315,
+						"h": 402
+					},
+					"frame": {
+						"x": 1021,
+						"y": 1,
+						"w": 315,
+						"h": 402
+					}
+				},
+				{
+					"filename": "sceleton/death_010.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 146,
+						"y": 372,
+						"w": 315,
+						"h": 402
+					},
+					"frame": {
+						"x": 1021,
+						"y": 1,
+						"w": 315,
+						"h": 402
+					}
+				},
+				{
+					"filename": "sceleton/death_011.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 146,
+						"y": 372,
+						"w": 315,
+						"h": 402
+					},
+					"frame": {
+						"x": 1021,
+						"y": 1,
+						"w": 315,
+						"h": 402
+					}
+				},
+				{
+					"filename": "sceleton/death_005.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 151,
+						"y": 268,
+						"w": 362,
+						"h": 505
+					},
+					"frame": {
+						"x": 1,
+						"y": 397,
+						"w": 362,
+						"h": 505
+					}
+				},
+				{
+					"filename": "sceleton/death_000.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 142,
+						"y": 215,
+						"w": 502,
+						"h": 548
+					},
+					"frame": {
+						"x": 365,
+						"y": 404,
+						"w": 502,
+						"h": 548
+					}
+				},
+				{
+					"filename": "sceleton/death_001.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 82,
+						"y": 131,
+						"w": 584,
+						"h": 616
+					},
+					"frame": {
+						"x": 869,
+						"y": 405,
+						"w": 584,
+						"h": 616
+					}
+				},
+				{
+					"filename": "sceleton/death_002.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 39,
+						"y": 49,
+						"w": 650,
+						"h": 691
+					},
+					"frame": {
+						"x": 1,
+						"y": 954,
+						"w": 650,
+						"h": 691
+					}
+				},
+				{
+					"filename": "sceleton/death_003.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 94,
+						"y": 32,
+						"w": 429,
+						"h": 728
+					},
+					"frame": {
+						"x": 653,
+						"y": 1023,
+						"w": 429,
+						"h": 728
+					}
+				},
+				{
+					"filename": "sceleton/death_004.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1205,
+						"h": 801
+					},
+					"spriteSourceSize": {
+						"x": 103,
+						"y": 2,
+						"w": 432,
+						"h": 771
+					},
+					"frame": {
+						"x": 1084,
+						"y": 1023,
+						"w": 432,
+						"h": 771
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:19c3c2dece152d9c2596f9e38726c065:f56d851d0c0e76767d3538c46e08095a:5db8c99f48e464bf343b67a3b4e5e760$"
+	}
+}
