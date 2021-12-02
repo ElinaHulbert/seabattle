@@ -457,7 +457,7 @@ function addSceleton(sceleton, scene) {
   scene.add.sprite(475, 470, "sceleton").play("sceleton").setScale(0.3, 0.3);
 }
 
-
+//Fireworks function
 function addFireworks(firework,scene) {
   let framesArray = [];
   for (let num = 0; num < 27; num++){
@@ -489,6 +489,5 @@ function addFireworks(firework,scene) {
     .setScale(scale, scale);
 
   }
-
-
 }
+

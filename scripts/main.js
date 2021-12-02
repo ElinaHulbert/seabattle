@@ -1,6 +1,6 @@
 
 document.getElementById("button").addEventListener("click", function () {
-    document.querySelector(".bg-popContainer").style.display = "flex";
+  document.querySelector(".bg-popContainer").style.display = "flex";
   });
   
   document.getElementById("closer").addEventListener("click", function () {
