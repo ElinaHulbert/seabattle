@@ -53,8 +53,8 @@ let sea;
 let hit;
 let miss;
 let newBackground;
-let firework;
-let sceleton;
+// let firework;
+// let sceleton;
 
 function create() {
   //background
@@ -141,16 +141,13 @@ function create() {
       if (this.alpha != 1) {
         shotCounter++;
         this.alpha = 1;
-        console.log(shotCounter);
-        //setting attempts here????????????????????????????????????????????????????????
         attemptText.setText("attempts: " + shotCounter + " /20");
       }
-      if (shotCounter == 10) {
+      if (shotCounter == 20) {
         setTimeout(() => {
           onEvent();
         }, 500);
         function onEvent() {
-          console.log("You lost!");
           newBackground = scene.add.image(400, 300, "waves");
           newBackground.displayWidth = 800;
           newBackground.displayHeight = 600;
@@ -168,7 +165,6 @@ function create() {
           loserText.setPadding({ x: 15, y: 15 });
           ////////////////////////////Sceleton FUNCTION//////////////////////////////////////////////////
           addSceleton("sceleton", scene);
-
         }
       }
     });
@@ -205,11 +201,10 @@ function create() {
 
     ship1.input.hitArea.setTo(-7, 3, 36, 36);
     ship1.alpha = 0.000001;
-    this.input.enableDebug(ship1);
 
     let winnerText;
     let scene = this;
-    // let delay;
+
     ship1.on("pointerdown", function () {
       hit = scene.sound.add("hit", { volume: 0.4 });
       hit.play({
@@ -224,8 +219,6 @@ function create() {
             onEvent();
           }, 1000);
           function onEvent() {
-            // console.log("You won!");
-
             let newBackground = scene.add.image(400, 300, "waves");
             newBackground.displayWidth = 800;
             newBackground.displayHeight = 600;
@@ -277,8 +270,6 @@ function create() {
     ship2.setInteractive();
     ship2.input.hitArea.setTo(-6, 0, 39, 80);
 
-    this.input.enableDebug(ship2);
-
     let scene = this;
     let winnerText;
     ship2.state = 2;
@@ -316,7 +307,6 @@ function create() {
             onEvent();
           }, 1000);
           function onEvent() {
-            console.log("You won!");
             ////////////////////////////////////////FIREWORKS//////////////////////////////////////////
 
             let newBackground = scene.add.image(400, 300, "waves");
@@ -334,7 +324,7 @@ function create() {
               }
             );
             winnerText.setPadding({ x: 15, y: 15 });
-           ////////////////////////FIREWORK///////////////////////////////
+            ////////////////////////FIREWORK///////////////////////////////
             addFireworks("firework", scene);
           }
         }
@@ -371,7 +361,7 @@ function create() {
     flip_ship.setInteractive();
     flip_ship.input.hitArea.setTo(0, -6, 80, 39);
 
-    this.input.enableDebug(flip_ship);
+    // this.input.enableDebug(flip_ship);
 
     let scene = this;
     let winnerText;
@@ -410,7 +400,6 @@ function create() {
             onEvent();
           }, 1000);
           function onEvent() {
-            console.log("You won!");
             let newBackground = scene.add.image(400, 300, "waves");
             newBackground.displayWidth = 800;
             newBackground.displayHeight = 600;
@@ -428,7 +417,6 @@ function create() {
             winnerText.setPadding({ x: 15, y: 15 });
             /////////////////////////////FIREWORK////////////////////////////////////////
             addFireworks("firework", scene);
-
           }
         }
       }
@@ -458,10 +446,13 @@ function addSceleton(sceleton, scene) {
 }
 
 //Fireworks function
-function addFireworks(firework,scene) {
+function addFireworks(firework, scene) {
   let framesArray = [];
-  for (let num = 0; num < 27; num++){
-    framesArray.push({ key: firework, frame: "New-folder/firework-" + num.toString() },)
+  for (let num = 0; num < 27; num++) {
+    framesArray.push({
+      key: firework,
+      frame: "New-folder/firework-" + num.toString(),
+    });
   }
   scene.anims.create({
     key: "firework",
@@ -479,15 +470,13 @@ function addFireworks(firework,scene) {
     doFirework(400, 500, "firework", 1);
   }, 700);
   setTimeout(() => {
-    doFirework(600, 250, "firework", 1.5 );
+    doFirework(600, 250, "firework", 1.5);
   }, 800);
 
-  function doFirework(x, y, spriteName,scale) {
+  function doFirework(x, y, spriteName, scale) {
     scene.add
-    .sprite(x, y, spriteName)
-    .play(spriteName, true)
-    .setScale(scale, scale);
-
+      .sprite(x, y, spriteName)
+      .play(spriteName, true)
+      .setScale(scale, scale);
   }
 }
-
