@@ -241,69 +241,8 @@ function create() {
               }
             );
             winnerText.setPadding({ x: 15, y: 15 });
-
-            scene.anims.create({
-              key: "firework",
-              frames: [
-                { key: "firework", frame: "New-folder/firework-0" },
-                { key: "firework", frame: "New-folder/firework-1" },
-                { key: "firework", frame: "New-folder/firework-2" },
-                { key: "firework", frame: "New-folder/firework-3" },
-                { key: "firework", frame: "New-folder/firework-4" },
-                { key: "firework", frame: "New-folder/firework-5" },
-                { key: "firework", frame: "New-folder/firework-6" },
-                { key: "firework", frame: "New-folder/firework-7" },
-                { key: "firework", frame: "New-folder/firework-8" },
-                { key: "firework", frame: "New-folder/firework-9" },
-                { key: "firework", frame: "New-folder/firework-10" },
-                { key: "firework", frame: "New-folder/firework-11" },
-                { key: "firework", frame: "New-folder/firework-12" },
-                { key: "firework", frame: "New-folder/firework-13" },
-                { key: "firework", frame: "New-folder/firework-14" },
-                { key: "firework", frame: "New-folder/firework-15" },
-                { key: "firework", frame: "New-folder/firework-16" },
-                { key: "firework", frame: "New-folder/firework-17" },
-                { key: "firework", frame: "New-folder/firework-18" },
-                { key: "firework", frame: "New-folder/firework-19" },
-                { key: "firework", frame: "New-folder/firework-20" },
-                { key: "firework", frame: "New-folder/firework-21" },
-                { key: "firework", frame: "New-folder/firework-22" },
-                { key: "firework", frame: "New-folder/firework-23" },
-                { key: "firework", frame: "New-folder/firework-24" },
-                { key: "firework", frame: "New-folder/firework-25" },
-                { key: "firework", frame: "New-folder/firework-26" },
-                { key: "firework", frame: "New-folder/firework-27" },
-              ],
-              frameRate: 20,
-              repeat: -1,
-            });
-            setTimeout(() => {
-              firstFirework();
-            }, 500);
-            setTimeout(() => {
-              secondFirework();
-            }, 700);
-            setTimeout(() => {
-              thirdFirework();
-            }, 800);
-            function firstFirework() {
-              scene.add
-                .sprite(200, 200, "firework")
-                .play("firework", true)
-                .setScale(2, 2);
-              let cheer;
-              cheer = scene.sound.add("kids_cheering", { volume: 0.4 });
-              cheer.play();
-            }
-            function secondFirework() {
-              scene.add.sprite(400, 500, "firework").play("firework", true);
-            }
-            function thirdFirework() {
-              scene.add
-                .sprite(600, 250, "firework")
-                .play("firework", true)
-                .setScale(1.5, 1.5);
-            }
+            ////////////////////////FIREWORK FUNCTION///////////////////////////
+            addFireworks("firework", scene);
           }
         }
       }
@@ -395,69 +334,8 @@ function create() {
               }
             );
             winnerText.setPadding({ x: 15, y: 15 });
-            // winnerText.setText("YOU WON! ALL SHIPS ARE DEFEATED!");
-            scene.anims.create({
-              key: "firework",
-              frames: [
-                { key: "firework", frame: "New-folder/firework-0" },
-                { key: "firework", frame: "New-folder/firework-1" },
-                { key: "firework", frame: "New-folder/firework-2" },
-                { key: "firework", frame: "New-folder/firework-3" },
-                { key: "firework", frame: "New-folder/firework-4" },
-                { key: "firework", frame: "New-folder/firework-5" },
-                { key: "firework", frame: "New-folder/firework-6" },
-                { key: "firework", frame: "New-folder/firework-7" },
-                { key: "firework", frame: "New-folder/firework-8" },
-                { key: "firework", frame: "New-folder/firework-9" },
-                { key: "firework", frame: "New-folder/firework-10" },
-                { key: "firework", frame: "New-folder/firework-11" },
-                { key: "firework", frame: "New-folder/firework-12" },
-                { key: "firework", frame: "New-folder/firework-13" },
-                { key: "firework", frame: "New-folder/firework-14" },
-                { key: "firework", frame: "New-folder/firework-15" },
-                { key: "firework", frame: "New-folder/firework-16" },
-                { key: "firework", frame: "New-folder/firework-17" },
-                { key: "firework", frame: "New-folder/firework-18" },
-                { key: "firework", frame: "New-folder/firework-19" },
-                { key: "firework", frame: "New-folder/firework-20" },
-                { key: "firework", frame: "New-folder/firework-21" },
-                { key: "firework", frame: "New-folder/firework-22" },
-                { key: "firework", frame: "New-folder/firework-23" },
-                { key: "firework", frame: "New-folder/firework-24" },
-                { key: "firework", frame: "New-folder/firework-25" },
-                { key: "firework", frame: "New-folder/firework-26" },
-                { key: "firework", frame: "New-folder/firework-27" },
-              ],
-              frameRate: 20,
-              repeat: -1,
-            });
-            setTimeout(() => {
-              firstFirework();
-            }, 500);
-            setTimeout(() => {
-              secondFirework();
-            }, 700);
-            setTimeout(() => {
-              thirdFirework();
-            }, 800);
-            function firstFirework() {
-              scene.add
-                .sprite(200, 200, "firework")
-                .play("firework", true)
-                .setScale(2, 2);
-              let cheer;
-              cheer = scene.sound.add("kids_cheering", { volume: 0.4 });
-              cheer.play();
-            }
-            function secondFirework() {
-              scene.add.sprite(400, 500, "firework").play("firework", true);
-            }
-            function thirdFirework() {
-              scene.add
-                .sprite(600, 250, "firework")
-                .play("firework", true)
-                .setScale(1.5, 1.5);
-            }
+           ////////////////////////FIREWORK///////////////////////////////
+            addFireworks("firework", scene);
           }
         }
       }
@@ -548,69 +426,9 @@ function create() {
               }
             );
             winnerText.setPadding({ x: 15, y: 15 });
+            /////////////////////////////FIREWORK////////////////////////////////////////
+            addFireworks("firework", scene);
 
-            scene.anims.create({
-              key: "firework",
-              frames: [
-                { key: "firework", frame: "New-folder/firework-0" },
-                { key: "firework", frame: "New-folder/firework-1" },
-                { key: "firework", frame: "New-folder/firework-2" },
-                { key: "firework", frame: "New-folder/firework-3" },
-                { key: "firework", frame: "New-folder/firework-4" },
-                { key: "firework", frame: "New-folder/firework-5" },
-                { key: "firework", frame: "New-folder/firework-6" },
-                { key: "firework", frame: "New-folder/firework-7" },
-                { key: "firework", frame: "New-folder/firework-8" },
-                { key: "firework", frame: "New-folder/firework-9" },
-                { key: "firework", frame: "New-folder/firework-10" },
-                { key: "firework", frame: "New-folder/firework-11" },
-                { key: "firework", frame: "New-folder/firework-12" },
-                { key: "firework", frame: "New-folder/firework-13" },
-                { key: "firework", frame: "New-folder/firework-14" },
-                { key: "firework", frame: "New-folder/firework-15" },
-                { key: "firework", frame: "New-folder/firework-16" },
-                { key: "firework", frame: "New-folder/firework-17" },
-                { key: "firework", frame: "New-folder/firework-18" },
-                { key: "firework", frame: "New-folder/firework-19" },
-                { key: "firework", frame: "New-folder/firework-20" },
-                { key: "firework", frame: "New-folder/firework-21" },
-                { key: "firework", frame: "New-folder/firework-22" },
-                { key: "firework", frame: "New-folder/firework-23" },
-                { key: "firework", frame: "New-folder/firework-24" },
-                { key: "firework", frame: "New-folder/firework-25" },
-                { key: "firework", frame: "New-folder/firework-26" },
-                { key: "firework", frame: "New-folder/firework-27" },
-              ],
-              frameRate: 20,
-              repeat: -1,
-            });
-            setTimeout(() => {
-              firstFirework();
-            }, 500);
-            setTimeout(() => {
-              secondFirework();
-            }, 700);
-            setTimeout(() => {
-              thirdFirework();
-            }, 800);
-            function firstFirework() {
-              scene.add
-                .sprite(200, 200, "firework")
-                .play("firework", true)
-                .setScale(2, 2);
-              let cheer;
-              cheer = scene.sound.add("kids_cheering", { volume: 0.4 });
-              cheer.play();
-            }
-            function secondFirework() {
-              scene.add.sprite(400, 500, "firework").play("firework", true);
-            }
-            function thirdFirework() {
-              scene.add
-                .sprite(600, 250, "firework")
-                .play("firework", true)
-                .setScale(1.5, 1.5);
-            }
           }
         }
       }
@@ -618,7 +436,7 @@ function create() {
   }
 }
 
-// addSceleton("sceleton",);
+// SCELETON FUNCTION
 function addSceleton(sceleton, scene) {
   let framesArray = [];
   for (let num = 0; num < 12; num++) {
@@ -637,4 +455,40 @@ function addSceleton(sceleton, scene) {
   sad = scene.sound.add("sad", { volume: 0.4 });
   sad.play();
   scene.add.sprite(475, 470, "sceleton").play("sceleton").setScale(0.3, 0.3);
+}
+
+
+function addFireworks(firework,scene) {
+  let framesArray = [];
+  for (let num = 0; num < 27; num++){
+    framesArray.push({ key: firework, frame: "New-folder/firework-" + num.toString() },)
+  }
+  scene.anims.create({
+    key: "firework",
+    frames: framesArray,
+    frameRate: 20,
+    repeat: -1,
+  });
+  setTimeout(() => {
+    let cheer;
+    cheer = scene.sound.add("kids_cheering", { volume: 0.4 });
+    cheer.play();
+    doFirework(200, 200, "firework", 2);
+  }, 500);
+  setTimeout(() => {
+    doFirework(400, 500, "firework", 1);
+  }, 700);
+  setTimeout(() => {
+    doFirework(600, 250, "firework", 1.5 );
+  }, 800);
+
+  function doFirework(x, y, spriteName,scale) {
+    scene.add
+    .sprite(x, y, spriteName)
+    .play(spriteName, true)
+    .setScale(scale, scale);
+
+  }
+
+
 }
