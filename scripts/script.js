@@ -75,7 +75,7 @@ function create() {
   });
 
   //Attempts
-  attemptText = this.add.text(265, 530, `attempts: ${shotCounter} /20`, {
+  attemptText = this.add.text(265, 530, `attempts: ${shotCounter} /70`, {
     fontSize: "32px",
     fill: "#000",
     backgroundColor: "#dffbff",
@@ -141,9 +141,9 @@ function create() {
       if (this.alpha != 1) {
         shotCounter++;
         this.alpha = 1;
-        attemptText.setText("attempts: " + shotCounter + " /20");
+        attemptText.setText("attempts: " + shotCounter + " /70");
       }
-      if (shotCounter == 20) {
+      if (shotCounter == 70) {
         setTimeout(() => {
           onEvent();
         }, 500);
@@ -163,7 +163,7 @@ function create() {
             }
           );
           loserText.setPadding({ x: 15, y: 15 });
-          ////////////////////////////Sceleton FUNCTION//////////////////////////////////////////////////
+          ////////////////////////////Sceleton FUNCTION////////////////////////////////
           addSceleton("sceleton", scene);
         }
       }
