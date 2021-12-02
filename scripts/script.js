@@ -166,32 +166,9 @@ function create() {
             }
           );
           loserText.setPadding({ x: 15, y: 15 });
-          scene.anims.create({
-            key: "sceleton",
-            frames: [
-              { key: "sceleton", frame: "sceleton/death_000.png" },
-              { key: "sceleton", frame: "sceleton/death_001.png" },
-              { key: "sceleton", frame: "sceleton/death_002.png" },
-              { key: "sceleton", frame: "sceleton/death_003.png" },
-              { key: "sceleton", frame: "sceleton/death_004.png" },
-              { key: "sceleton", frame: "sceleton/death_005.png" },
-              { key: "sceleton", frame: "sceleton/death_006.png" },
-              { key: "sceleton", frame: "sceleton/death_007.png" },
-              { key: "sceleton", frame: "sceleton/death_008.png" },
-              { key: "sceleton", frame: "sceleton/death_009.png" },
-              { key: "sceleton", frame: "sceleton/death_010.png" },
-              { key: "sceleton", frame: "sceleton/death_011.png" },
-            ],
-            frameRate: 10,
-            repeat: -1,
-          });
-          let sad;
-          sad = scene.sound.add("sad", { volume: 0.4 });
-          sad.play();
-          scene.add
-            .sprite(475, 470, "sceleton")
-            .play("sceleton")
-            .setScale(0.3, 0.3);
+          ////////////////////////////Sceleton FUNCTION//////////////////////////////////////////////////
+          addSceleton("sceleton", scene);
+
         }
       }
     });
@@ -639,4 +616,25 @@ function create() {
       }
     });
   }
+}
+
+// addSceleton("sceleton",);
+function addSceleton(sceleton, scene) {
+  let framesArray = [];
+  for (let num = 0; num < 12; num++) {
+    framesArray.push({
+      key: sceleton,
+      frame: "sceleton/death_00" + num + ".png",
+    });
+  }
+  scene.anims.create({
+    key: sceleton,
+    frames: framesArray,
+    frameRate: 10,
+    repeat: -1,
+  });
+  let sad;
+  sad = scene.sound.add("sad", { volume: 0.4 });
+  sad.play();
+  scene.add.sprite(475, 470, "sceleton").play("sceleton").setScale(0.3, 0.3);
 }
