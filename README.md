@@ -15,6 +15,6 @@ My teammates, who we created the game with:
 [@AnastasiyaSamoilenkaHyper] (https://www.github.com/AnastasiyaSamoilenkaHyper)
 <br>
 [@SophieKoenig] (https://github.com/SophieKoenig)
-
+##### :art: Design
 Figma Prototype we created before working with code: 
 <image src="./assets/Prototype.png"/>
