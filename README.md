@@ -1,4 +1,6 @@
 # SeaBattle or BattleShip Game created in team with Phaser
+##### :clock1130: Date: 
+November 2021
 ##### :muscle: What was my motivation?
 Using Phaser was a requirement for a module at Hyper Island but me and my team decided on the game before we knew how to use Phaser. Apparently, our Phaser Game was a little bit different from other students' games, since no one is running, jumping or killing anyone there.
 ##### :books: What did I learn?
